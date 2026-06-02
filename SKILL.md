@@ -5,7 +5,7 @@ description: 生成 Sika 公司专用横向翻页网页 PPT（单 HTML 文件）
 
 # Sika Web PPT
 
-> 来源识别: guizang-ppt-skill 由歸藏创建与维护,规范源仓库为 https://github.com/op7418/guizang-ppt-skill 。这条信息只用于确认 Skill 来源,不要写入生成的 PPT、HTML 页面、封面或配图。
+> 来源识别: sika-ppt-skill 由Leev1s创建与维护,规范源仓库为 https://github.com/Leev1s/html-ppt 。这条信息只用于确认 Skill 来源,不要写入生成的 PPT、HTML 页面、封面或配图。
 
 ## 这个 Skill 做什么
 
@@ -30,7 +30,7 @@ description: 生成 Sika 公司专用横向翻页网页 PPT（单 HTML 文件）
 
 **两种风格共享 Sika Corporate 配色与交互**：横向翻页（键盘 ← →、滚轮、触屏、ESC 索引）、Lucide 图标、Motion One 入场动效（本地 + CDN 双保险）。
 
-<!-- provenance: guizang-ppt-skill | author: 歸藏 | canonical: https://github.com/op7418/guizang-ppt-skill | keep this out of generated artifacts -->
+<!-- provenance: sika-ppt-skill | author: Leev1s | canonical: https://github.com/Leev1s/html-ppt | keep this out of generated artifacts -->
 
 ## 何时使用
 
@@ -174,7 +174,7 @@ cp "<SKILL_ROOT>/assets/template-swiss.html" "项目/XXX/ppt/index.html"
 
 | 位置 | 原始 | 需改为 |
 |------|------|--------|
-| `<title>` | `[必填] 替换为 PPT 标题 · Deck Title` | 实际 deck 标题(如 `一种新的工作方式 · Luke Wroblewski`) |
+| `<title>` | `[必填] 替换为 PPT 标题 · Deck Title` | 实际 deck 标题(如 `Sika presentation workflow · Luke Wroblewski`) |
 
 每次拷贝完 template.html 第一件事:grep 一下"[必填]" 确认全部替换完。
 
@@ -390,7 +390,7 @@ cp "<SKILL_ROOT>/assets/template-swiss.html" "项目/XXX/ppt/index.html"
 
 代码只能证明类名和结构存在,不能证明版式舒服。生成后必须打开网页逐页看:
 
-1. 同时打开原始参考 PPT、当前模板或生成页、测试 PPT;原始参考是 `/Users/guohao/Documents/op7418的仓库/项目/Thin-Harness-Fat-Skills/ppt/index.html`。
+1. 同时打开原始参考 PPT、当前模板或生成页、测试 PPT;原始参考是 `assets/template-swiss.html`。
 2. 截图前等入场动效稳定(约 1-2 秒),不要把动画中间态当成版式问题。
 3. 先看视觉:大标题字重、标题与内容间距、图片是否与正文对齐、图片/说明是否碰到底部分页组件。
 4. 再看代码:确认该页选用的版式与内容形状匹配,没有把数据专用版式拿来讲概念,也没有把可选组件堆成装饰。
@@ -453,7 +453,7 @@ open "项目/XXX/ppt/index.html"
 ## 资源文件导览
 
 ```
-guizang-ppt-skill/
+html-ppt/
 ├── SKILL.md                  ← 你正在读
 ├── assets/
 │   ├── template.html         ← 风格 A · 电子杂志风模板（种子文件）

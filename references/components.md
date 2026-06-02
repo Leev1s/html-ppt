@@ -93,7 +93,7 @@
 <!-- ... 页面主体 ... -->
 
 <div class="foot">
-  <div class="title">项目名 · CodePilot　|　github.com/codepilot</div>
+  <div class="title">Sika Project · Building Trust</div>
   <div>Act I · Dev Numbers</div>
 </div>
 ```

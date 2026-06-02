@@ -1,12 +1,12 @@
 # Sika PPT Skill · Web Decks / Images / Covers
 
-![GitHub stars](https://img.shields.io/github/stars/op7418/guizang-ppt-skill?style=flat-square)
-![License](https://img.shields.io/github/license/op7418/guizang-ppt-skill?style=flat-square)
+![GitHub stars](https://img.shields.io/github/stars/Leev1s/html-ppt?style=flat-square)
+![License](https://img.shields.io/github/license/Leev1s/html-ppt?style=flat-square)
 ![Skill](https://img.shields.io/badge/Skill-Agent-111111?style=flat-square)
 ![HTML Deck](https://img.shields.io/badge/HTML-Deck-0A7CFF?style=flat-square)
 ![Claude Code](https://img.shields.io/badge/Claude%20Code-Supported-6B5B95?style=flat-square)
 ![Codex](https://img.shields.io/badge/Codex-Supported-222222?style=flat-square)
-[![Supported by ZhenFund Token Grant](https://img.shields.io/static/v1?label=ZhenFund%20Token%20Grant&message=Supported&color=FF4D00&style=flat-square)](https://zhenfund.feishu.cn/share/base/form/shrcn1lAANF659o7EpWnxlR1VOh?sessionid=)
+![Sika Theme](https://img.shields.io/badge/Sika-Corporate%20Theme-D8282F?style=flat-square)
 
 An agent skill tailored for **Sika** decks in Claude Code, Codex, and similar coding-agent environments. It generates **single-file HTML horizontal-swipe decks**, deck visuals, and social cover pages using Sika Red + Sika Yellow brand styling.
 
@@ -15,7 +15,7 @@ It ships with two Sika-adapted visual systems:
 - **Style A: Sika editorial magazine**. Sika Red works as the headline ink, while a low-saturation Sika Yellow paper base supports project stories, case reviews, and point-of-view talks.
 - **Style B: Sika Swiss International**. Grid-first, sharp rectangles, hairline rules, and extreme type contrast, locked to Sika Corporate red/yellow/warm-sand colors for facts, products, construction workflows, and frameworks.
 
-> Distilled by [Guizang](https://x.com/op7418) from offline talks like "One-Person Company: Organizations Folded by AI" and "A New Way of Working." Every pitfall hit during those decks is logged in `checklist.md`.
+> Maintained by [Leev1s](https://github.com/Leev1s) and published at [Leev1s/html-ppt](https://github.com/Leev1s/html-ppt). This version is specifically adapted for the Sika Corporate visual system.
 
 **Sika Theme · Style A Editorial Magazine**
 
@@ -28,19 +28,19 @@ It ships with two Sika-adapted visual systems:
 ## 30-second start
 
 ```bash
-npx skills add https://github.com/op7418/guizang-ppt-skill --skill guizang-ppt-skill
+npx skills add https://github.com/Leev1s/html-ppt --skill sika-ppt-skill
 ```
 
 Or paste this to an AI agent with shell access:
 
 ```text
-Install guizang-ppt-skill for me. Clone https://github.com/op7418/guizang-ppt-skill into ~/.claude/skills/guizang-ppt-skill, then verify that SKILL.md, assets/, and references/ exist.
+Install sika-ppt-skill for me. Clone https://github.com/Leev1s/html-ppt into ~/.claude/skills/sika-ppt-skill, then verify that SKILL.md, assets/, and references/ exist.
 ```
 
 If you already installed it, update with:
 
 ```text
-Update guizang-ppt-skill for me. Go to ~/.claude/skills/guizang-ppt-skill, run git pull, then tell me the latest commit.
+Update sika-ppt-skill for me. Go to ~/.claude/skills/sika-ppt-skill, run git pull, then tell me the latest commit.
 ```
 
 Then ask your agent:
@@ -109,35 +109,35 @@ Redesign this product screenshot as a 16:10 slide visual.
 ### Option 1: One-line install (recommended)
 
 ```bash
-npx skills add https://github.com/op7418/guizang-ppt-skill --skill guizang-ppt-skill
+npx skills add https://github.com/Leev1s/html-ppt --skill sika-ppt-skill
 ```
 
 ### Option 2: Paste this to an AI
 
-> Install the `guizang-ppt-skill` Claude Code skill for me. Steps:
+> Install the `sika-ppt-skill` Claude Code skill for me. Steps:
 >
 > 1. Make sure `~/.claude/skills/` exists (create if not)
-> 2. Run `git clone https://github.com/op7418/guizang-ppt-skill.git ~/.claude/skills/guizang-ppt-skill`
-> 3. Verify: `ls ~/.claude/skills/guizang-ppt-skill/` should show `SKILL.md`, `assets/`, `references/`
-> 4. Tell me when done. Later, saying things like "make me a magazine-style deck" will trigger this skill.
+> 2. Run `git clone https://github.com/Leev1s/html-ppt.git ~/.claude/skills/sika-ppt-skill`
+> 3. Verify: `ls ~/.claude/skills/sika-ppt-skill/` should show `SKILL.md`, `assets/`, `references/`
+> 4. Tell me when done. Later, saying things like "make me a Sika-style deck" or "make me a Sika Swiss deck" will trigger this skill.
 
 Paste the block above into Claude Code / Cursor / any AI agent with shell access and it handles the install.
 
 ### Option 3: Manual CLI
 
 ```bash
-git clone https://github.com/op7418/guizang-ppt-skill.git ~/.claude/skills/guizang-ppt-skill
+git clone https://github.com/Leev1s/html-ppt.git ~/.claude/skills/sika-ppt-skill
 ```
 
 ### How to trigger it
 
 Once installed, Claude Code auto-detects the skill. Trigger phrases:
 
-- "Make me a magazine-style deck"
-- "Make me a Swiss-style deck"
-- "Generate a horizontal swipe deck"
-- "Editorial magazine style presentation"
-- "Electronic ink slides for my talk"
+- "Make me a Sika-style deck"
+- "Make me a Sika Swiss-style deck"
+- "Generate a Sika horizontal swipe deck"
+- "Sika editorial magazine style presentation"
+- "Sika Corporate slides for my talk"
 - "Create a 21:9 WeChat cover from this article"
 - "Create a 1:1 share card from this deck"
 
@@ -227,7 +227,7 @@ Redesign these product screenshots into consistent 16:10 slide visuals. Preserve
 ## Directory
 
 ```
-guizang-ppt-skill/
+html-ppt/
 ├── SKILL.md              ← main skill file: workflow, principles, common mistakes
 ├── README.md             ← Chinese README
 ├── README.en.md          ← this file
@@ -323,4 +323,4 @@ Bugs, layout issues, new layout requests — Issues and PRs welcome. Prioritize:
 
 ## License
 
-AGPL-3.0 © 2026 [op7418](https://github.com/op7418)
+AGPL-3.0 © 2026 [Leev1s](https://github.com/Leev1s)

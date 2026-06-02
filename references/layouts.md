@@ -168,18 +168,18 @@ layouts.md 使用的所有类（`h-hero` / `h-xl` / `h-sub` / `h-md` / `lead` / 
     <div>Vol.01</div>
   </div>
   <div class="frame" style="display:grid; gap:4vh; align-content:center; min-height:80vh">
-    <div class="kicker" data-anim>私享会 · 李继刚</div>
-    <h1 class="h-hero" data-anim>一人公司</h1>
-    <h2 class="h-sub" data-anim>被 AI 折叠的组织</h2>
+    <div class="kicker" data-anim>Sika 项目汇报 · 2026</div>
+    <h1 class="h-hero" data-anim>Building Trust</h1>
+    <h2 class="h-sub" data-anim>Sika 项目交付系统</h2>
     <p class="lead" style="max-width:60vw" data-anim>
-      一个 AI 创作者 —— 在 64 天里做了 11 万行代码、在 9 个平台上持续输出，生活节奏几乎没有被改变。
+      从材料、施工到长期维护，用统一的工程语言讲清 Sika 如何在项目现场建立信任。
     </p>
     <div class="meta-row" data-anim>
-      <span>歸藏 Guizang</span><span>·</span><span>独立创作者 / CodePilot 作者</span>
+      <span>Sika</span><span>·</span><span>Project Presentation</span>
     </div>
   </div>
   <div class="foot">
-    <div>一场关于 AI · 组织 · 个体的分享</div>
+    <div>一场关于材料 · 施工 · 信任的项目汇报</div>
     <div>— 2026 —</div>
   </div>
 </section>
@@ -227,49 +227,49 @@ layouts.md 使用的所有类（`h-hero` / `h-xl` / `h-sub` / `h-md` / `lead` / 
 ```html
 <section class="slide light">
   <div class="chrome">
-    <div>过去 64 天 · 开发篇</div>
+    <div>项目周期 · 交付篇</div>
     <div>Act I / Dev · 02 / 25</div>
   </div>
   <div class="frame" style="padding-top:6vh">
-    <div class="kicker" data-anim>一个人，做了什么。</div>
-    <h2 class="h-xl" data-anim>过去 64 天</h2>
-    <p class="lead" style="margin-bottom:5vh" data-anim>从 0 到开源 CodePilot。</p>
+    <div class="kicker" data-anim>一个项目，如何交付。</div>
+    <h2 class="h-xl" data-anim>项目全周期</h2>
+    <p class="lead" style="margin-bottom:5vh" data-anim>从材料选型到现场交付。</p>
 
     <div class="grid-6" style="margin-top:6vh">
       <div class="stat-card" data-anim>
-        <div class="stat-label">Duration</div>
-        <div class="stat-nb">64 <span class="stat-unit">天</span></div>
-        <div class="stat-note">从 0 到现在</div>
+        <div class="stat-label">Cycle</div>
+        <div class="stat-nb">90 <span class="stat-unit">天</span></div>
+        <div class="stat-note">从方案到交付</div>
       </div>
       <div class="stat-card" data-anim>
-        <div class="stat-label">Lines of Code</div>
-        <div class="stat-nb">110K+</div>
-        <div class="stat-note">一行行写到 11 万+</div>
+        <div class="stat-label">Project Sites</div>
+        <div class="stat-nb">24</div>
+        <div class="stat-note">重点施工节点</div>
       </div>
       <div class="stat-card" data-anim>
-        <div class="stat-label">GitHub Stars</div>
-        <div class="stat-nb">5,166</div>
-        <div class="stat-note">一个开源仓库</div>
+        <div class="stat-label">Quality Checks</div>
+        <div class="stat-nb">128</div>
+        <div class="stat-note">现场质量记录</div>
       </div>
       <div class="stat-card" data-anim>
-        <div class="stat-label">Downloads</div>
-        <div class="stat-nb">41K+</div>
-        <div class="stat-note">装到了几万台电脑里</div>
+        <div class="stat-label">Coverage</div>
+        <div class="stat-nb">12K㎡</div>
+        <div class="stat-note">防护/粘接面积</div>
       </div>
       <div class="stat-card" data-anim>
-        <div class="stat-label">AI Providers</div>
-        <div class="stat-nb">19</div>
-        <div class="stat-note">跨平台接入</div>
+        <div class="stat-label">Product Lines</div>
+        <div class="stat-nb">6</div>
+        <div class="stat-note">跨品类协同</div>
       </div>
       <div class="stat-card" data-anim>
-        <div class="stat-label">Commits</div>
-        <div class="stat-nb">608+</div>
-        <div class="stat-note">没有协作者</div>
+        <div class="stat-label">Milestones</div>
+        <div class="stat-nb">18</div>
+        <div class="stat-note">关键验收节点</div>
       </div>
     </div>
   </div>
   <div class="foot">
-    <div>项目 · CodePilot　|　github.com/codepilot</div>
+    <div>Sika Project · Building Trust</div>
     <div>Act I · Dev Numbers</div>
   </div>
 </section>
@@ -311,8 +311,8 @@ layouts.md 使用的所有类（`h-hero` / `h-xl` / `h-sub` / `h-md` / `lead` / 
     </div>
     <!-- 右列：图片用标准 16/10 比例 + max-height，不要 align-self:end -->
     <figure class="frame-img r-16x10" data-anim>
-      <img src="images/codepilot.png" alt="CodePilot 产品截图">
-      <figcaption class="img-cap">CodePilot · 产品截图</figcaption>
+      <img src="images/sika-project.png" alt="Sika 项目截图">
+      <figcaption class="img-cap">Sika · 项目现场截图</figcaption>
     </figure>
   </div>
   <div class="foot">
@@ -360,8 +360,8 @@ layouts.md 使用的所有类（`h-hero` / `h-xl` / `h-sub` / `h-md` / `lead` / 
         <figcaption class="img-cap">即刻 · 26K</figcaption>
       </figure>
       <figure class="frame-img" style="height:26vh" data-anim>
-        <img src="images/xhs.png" alt="小红书 19K">
-        <figcaption class="img-cap">小红书 · 19K</figcaption>
+        <img src="images/xhs.png" alt="小红书 6K">
+        <figcaption class="img-cap">小红书 · 6K</figcaption>
       </figure>
       <figure class="frame-img" style="height:26vh" data-anim>
         <img src="images/douyin.png" alt="抖音 10K">

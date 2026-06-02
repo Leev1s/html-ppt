@@ -1,4 +1,4 @@
-# Guizang PPT Skill · Web Decks / Images / Covers
+# Sika PPT Skill · Web Decks / Images / Covers
 
 ![GitHub stars](https://img.shields.io/github/stars/op7418/guizang-ppt-skill?style=flat-square)
 ![License](https://img.shields.io/github/license/op7418/guizang-ppt-skill?style=flat-square)
@@ -8,20 +8,20 @@
 ![Codex](https://img.shields.io/badge/Codex-Supported-222222?style=flat-square)
 [![Supported by ZhenFund Token Grant](https://img.shields.io/static/v1?label=ZhenFund%20Token%20Grant&message=Supported&color=FF4D00&style=flat-square)](https://zhenfund.feishu.cn/share/base/form/shrcn1lAANF659o7EpWnxlR1VOh?sessionid=)
 
-An agent skill for Claude Code, Codex, and similar coding-agent environments. It generates **single-file HTML horizontal-swipe decks**, deck visuals, and social cover pages.
+An agent skill tailored for **Sika** decks in Claude Code, Codex, and similar coding-agent environments. It generates **single-file HTML horizontal-swipe decks**, deck visuals, and social cover pages using Sika Red + Sika Yellow brand styling.
 
-It ships with two visual systems:
+It ships with two Sika-adapted visual systems:
 
-- **Style A: editorial magazine × electronic ink**. Picture *Monocle* with code stitched in. Best for narrative talks, opinions, salons, and personal voice.
-- **Style B: Swiss International Typographic Style**. Grid-first, one high-saturation anchor color, sharp rectangles, hairline rules, and extreme type contrast. Best for facts, products, analysis, and frameworks.
+- **Style A: Sika editorial magazine**. Sika Red works as the headline ink, while a low-saturation Sika Yellow paper base supports project stories, case reviews, and point-of-view talks.
+- **Style B: Sika Swiss International**. Grid-first, sharp rectangles, hairline rules, and extreme type contrast, locked to Sika Corporate red/yellow/warm-sand colors for facts, products, construction workflows, and frameworks.
 
 > Distilled by [Guizang](https://x.com/op7418) from offline talks like "One-Person Company: Organizations Folded by AI" and "A New Way of Working." Every pitfall hit during those decks is logged in `checklist.md`.
 
-**Old Theme · Style A Editorial Magazine**
+**Sika Theme · Style A Editorial Magazine**
 
 ![Style A Editorial Magazine preview](https://github.com/user-attachments/assets/5dc316a2-401c-4e37-9123-ea081b6ae470)
 
-**New Theme · Style B Swiss International**
+**Sika Theme · Style B Swiss International**
 
 ![Style B Swiss International preview](https://github.com/user-attachments/assets/8960e78c-69bb-4b7e-aa95-6fad64b70314)
 
@@ -46,24 +46,24 @@ Update guizang-ppt-skill for me. Go to ~/.claude/skills/guizang-ppt-skill, run g
 Then ask your agent:
 
 ```text
-Create a Swiss-style deck from this article, around 7 slides, with 2-3 generated visuals.
+Create a Sika Swiss-style deck from this article, around 7 slides, with 2-3 generated visuals.
 ```
 
 Other useful prompts:
 
 ```text
-Turn this Markdown file into an editorial magazine-style presentation.
+Turn this Markdown file into a Sika editorial magazine-style presentation.
 Create a 21:9 social cover from the core idea of this deck.
 Redesign this product screenshot as a 16:10 slide visual.
 ```
 
 ## What you get
 
-- 🖋 **Two visual systems**: editorial storytelling for Style A, factual Swiss structure for Style B
+- 🖋 **Two Sika visual systems**: Sika editorial storytelling for Style A, factual Sika Swiss structure for Style B
 - 📐 **Horizontal swipe navigation**: ← → arrows / scroll wheel / touch swipe / bottom dots / ESC for index
 - 🧩 **Style A 10 layouts**: cover, divider, big numbers, image/text, image grid, pipeline, comparison, and more
 - 🧱 **Style B 22 locked layouts**: Cover, Statement, KPI Tower, Loop Diagram, Duo Compare, Image Hero, Closing Manifesto, and more
-- 🎨 **Curated theme presets**: 5 electronic-ink themes for Style A, 4 Swiss anchor-color themes for Style B
+- 🎨 **Fixed Sika palette**: both templates use Sika Red + Sika Yellow + warm-sand neutrals; non-Sika palettes are no longer recommended
 - 🖼 **Optional Codex image flow**: generate documentary photos, infographics, flow diagrams, system maps, and UI scenes with GPT-Image 2.0 / GPT-M 2.0, then insert them at template-safe ratios
 - 📰 **Social covers**: generate 21:9 WeChat cover images, 1:1 share cards, 3:4 Xiaohongshu covers, video thumbnails, and related variants
 - 📴 **Low-power static mode**: press `B` to turn WebGL / canvas animation into static visuals
@@ -80,8 +80,8 @@ Redesign this product screenshot as a 16:10 slide visual.
 | Task | Recommended flow |
 |------|------------------|
 | Long article to talk deck | Extract the core argument, then build a 6-10 slide rhythm |
-| Framework / product analysis | Use Style B Swiss with locked layouts and 21:9 hero visuals |
-| Personal talk / opinion piece | Use Style A editorial magazine for stronger narrative rhythm |
+| Framework / product analysis | Use Sika Style B Swiss with locked layouts and 21:9 hero visuals |
+| Project story / opinion piece | Use Sika Style A editorial magazine for stronger narrative rhythm |
 | Deck visuals | In Codex, generate photos, infographics, flow diagrams, system maps, or UI scenes |
 | Social covers | Generate 21:9 main covers, 1:1 share cards, 3:4 vertical covers, and video thumbnails from the same idea |
 | Screenshot normalization | Redesign raw screenshots into template-safe ratios before inserting them into slides |
@@ -92,7 +92,7 @@ Redesign this product screenshot as a 16:10 slide visual.
 - **Higher visual density than Markdown**: precise layout, positioning, motion, interactivity, and cover formats.
 - **Lightweight delivery**: one HTML file can be opened, presented, sent, screenshotted, or recorded.
 - **Better quality gates**: the Swiss validator can catch layout drift, unsafe image placement, centered body titles, and SVG text traps.
-- **One visual system across outputs**: decks, generated visuals, covers, and screenshot redesigns can share the same style rules.
+- **One Sika visual system across outputs**: decks, generated visuals, covers, and screenshot redesigns share the same Sika Corporate palette.
 
 ## Platform support
 
@@ -161,7 +161,7 @@ Full spec in [`SKILL.md`](./SKILL.md).
 The Swiss theme is a strict layout system, not just a CSS skin.
 
 - **22 named layouts**: body slides must use `S01` to `S22`; do not invent new structures
-- **4 anchor colors**: International Klein Blue, lemon yellow, lemon green, safety orange
+- **Fixed Sika theme**: Sika Red, Sika Yellow, and warm-sand neutrals across all pages
 - **Grid lock**: 16-column grid, sharp rectangles, 1px hairlines, no shadows, no gradients, no rounded cards
 - **Chinese title scaling**: all-Chinese headlines should be one step smaller to preserve space for content and images
 - **Image/text bottom alignment**: text and image blocks should align at the bottom in left/right image layouts, while staying clear of pagination controls
@@ -242,41 +242,30 @@ guizang-ppt-skill/
     ├── layouts.md        ← 10 layout skeletons (paste-ready)
     ├── layouts-swiss.md  ← 22 locked Swiss layouts
     ├── swiss-layout-lock.md ← Swiss fidelity and layout hard rules
-    ├── themes.md         ← 5 theme presets (pick, don't customize)
-    ├── themes-swiss.md   ← 4 Swiss anchor-color themes
+    ├── themes.md         ← fixed Sika editorial palette
+    ├── themes-swiss.md   ← fixed Sika Swiss palette
     ├── image-prompts.md  ← GPT-Image 2.0 / GPT-M 2.0 image types, ratios, and base prompts
     ├── screenshot-framing.md ← CleanShot X-style screenshot framing semantics
     └── checklist.md      ← quality checklist (P0 / P1 / P2 / P3 tiers)
 ```
 
-## Theme presets
+## Sika color system
 
-Pick from `references/themes.md`. **Custom hex values are not allowed** — protecting the aesthetic matters more than freedom of choice.
+This repository is now fully adapted for **Sika Corporate** decks. Non-Sika generic palettes are no longer the recommended entry point. Both templates use the same brand palette with different layout language:
 
-### Style A Editorial Themes
+| Template | Fixed palette | Usage |
+|----------|---------------|-------|
+| `assets/template.html` | Sika Red `#D8282F` + warm yellow paper `#fff8e6` + Sika Yellow `#F5B325` | For case storytelling, project reviews, and narrative talks. Red behaves like headline ink; yellow behaves like corporate paper and site signage. |
+| `assets/template-swiss.html` | Sika Red `#D8282F` + Sika Yellow `#F5B325` + warm-sand neutrals | For data, processes, products, construction systems, quality, and supply-chain content. Red carries conclusions/KPIs; yellow carries brand recognition. |
 
-| Preview | Theme | Core colors and best for |
-|---------|-------|--------------------------|
-| <img src="https://github.com/user-attachments/assets/df21dbcb-5fe4-4852-a91a-a9cf00aceeb4" width="260" alt="Ink Classic theme preview"> | 🖋 **Ink Classic** | `#0a0a0b` / `#f1efea`. General default, commercial launches, when in doubt. |
-| <img src="https://github.com/user-attachments/assets/99ce0fd2-72a6-4368-a75a-a8e21657a537" width="260" alt="Indigo Porcelain theme preview"> | 🌊 **Indigo Porcelain** | `#0a1f3d` / `#f1f3f5`. Tech, research, AI, technical keynotes. |
-| <img src="https://github.com/user-attachments/assets/bcc1cc4c-5e8e-4467-ae8d-f5801ae73657" width="260" alt="Forest Ink theme preview"> | 🌿 **Forest Ink** | `#1a2e1f` / `#f5f1e8`. Nature, sustainability, culture, non-fiction. |
-| <img src="https://github.com/user-attachments/assets/dfea080e-e916-417e-93cd-0a3628de84ca" width="260" alt="Kraft Paper theme preview"> | 🍂 **Kraft Paper** | `#2a1e13` / `#eedfc7`. Nostalgic, humanist, literary, indie zines. |
-| <img src="https://github.com/user-attachments/assets/f3705592-9a72-4dbc-9818-df3aea61bc75" width="260" alt="Dune theme preview"> | 🌙 **Dune** | `#1f1a14` / `#f0e6d2`. Art, design, creative, fashion, gallery-like decks. |
+Both templates include Sika helper elements: `.sika-brand-band`, `.sika-corner`, `.sika-badge`, `.sika-stripe`, and `.slide.sika-yellow`. They create a red/yellow industrial identity without copying or stretching the official logo.
 
-Switching themes only requires replacing the 6 variables at the top of `template.html`'s `:root{}` block — all other CSS flows through `var(--...)`.
+**Hard rules**:
 
-### Style B Swiss Themes
-
-Pick from `references/themes-swiss.md`. **Custom hex values are not allowed** here either.
-
-| Preview | Theme | Anchor color and best for |
-|---------|-------|---------------------------|
-| <img src="https://github.com/user-attachments/assets/c02d02f7-ce6f-4e16-b8a6-778c96851f94" width="260" alt="International Klein Blue Swiss theme preview"> | 🔵 **International Klein Blue** | `#002FA7`. Default, commercial launches, AI products, frameworks. |
-| <img src="https://github.com/user-attachments/assets/c310a8c4-5d28-450e-b49a-6ac5b6ba4785" width="260" alt="Lemon Yellow Swiss theme preview"> | 🟡 **Lemon Yellow** | `#FFD500`. Youth, sports, retail, consumer goods, Y2K retro. |
-| <img src="https://github.com/user-attachments/assets/65f7b3f9-3358-419e-b513-f7f2cc24ec76" width="260" alt="Lemon Green Swiss theme preview"> | 🟢 **Lemon Green** | `#C5E803`. Ecology, sustainability, health, Gen Z brands. |
-| <img src="https://github.com/user-attachments/assets/9c3319c9-a134-4657-9a56-211c23411f7f" width="260" alt="Safety Orange Swiss theme preview"> | 🟠 **Safety Orange** | `#FF6B35`. Alerts, news, industrial topics, sports, energetic themes. |
-
-If the user asks for a Swiss-style deck without specifying color, default to International Klein Blue.
+- Do not switch a deck to a non-Sika palette. If variety is needed, adjust the area and hierarchy of red/yellow/warm neutrals.
+- Do not hand-code new hex values inside slides; inherit colors from `references/themes.md` and `references/themes-swiss.md`.
+- Do not use high-saturation yellow as a long-body text background; reserve it for bands, corners, badges, and section identity.
+- Do not redraw or distort the official logo; the Sika badge in the templates is a typographic identifier, not a trademark asset.
 
 ## Core design principles
 
@@ -289,12 +278,12 @@ If the user asks for a Swiss-style deck without specifying color, default to Int
 7. **Terms stay consistent** — Skills is Skills; no mix-and-match translations
 8. **Swiss layouts stay locked** — Style B should restore and reuse the original 22-page layout system instead of inventing unrelated pages
 
-## Visual references
+## Sika visual references
 
-- [*Monocle*](https://monocle.com) magazine layouts
-- YC Garry Tan — "Thin Harness, Fat Skills"
-- Massimo Vignelli / Helvetica Forever / Swiss International Typographic Style
-- Guizang's offline talk deck series
+- Sika Corporate red/yellow identity: red carries conclusions, risk, KPIs, and section focus; yellow carries bands, corners, badges, and site-signage cues.
+- Construction chemistry / jobsite semantics: warm-sand neutrals, sharp grids, numbering, process diagrams, and material texture should support Sika's industrial credibility.
+- Sika “Building Trust” narrative: language should emphasize quality, reliability, engineering, delivery, sustainable construction, and long-term trust.
+- Swiss grids are the structural backbone; final color must return to Sika Corporate.
 
 ## Roadmap
 
@@ -303,7 +292,7 @@ If the user asks for a Swiss-style deck without specifying color, default to Int
 - Add more Swiss layout validation rules
 - Improve screenshot redesign and infographic generation workflows
 - Prepare marketplace-specific variants such as WorkBuddy
-- Add more curated theme packs while keeping custom colors restricted
+- Add more Sika-specific examples while keeping the Sika Corporate palette fixed
 
 ## FAQ
 
@@ -311,7 +300,7 @@ If the user asks for a Swiss-style deck without specifying color, default to Int
 The main output is HTML. You can present it in a browser, screenshot it, or record it. PPTX conversion can be done as a separate workflow, but it is not the core path today.
 
 **Why are custom colors not allowed?**
-The skill is designed for stable visual output. Arbitrary colors often break the system, so decks must use curated presets.
+The skill is designed for stable Sika visual output. Arbitrary colors often break the system, so decks must use the fixed Sika Corporate palette.
 
 **Can I add my own layout?**
 Yes. Style A layouts can be extended in `references/layouts.md`. Style B is stricter: update `template-swiss.html`, `layouts-swiss.md`, `swiss-layout-lock.md`, and the validator together.

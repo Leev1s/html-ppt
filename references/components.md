@@ -1,6 +1,6 @@
 # 组件参考 · Components
 
-这是 `guizang-ppt-skill` skill 的组件手册。template.html 已经定义好了所有样式，这里只写"这个组件长什么样、怎么用"。
+这是 Sika PPT skill 的组件手册。`template.html` 已固定为 Sika Corporate 配色,所有组件都应继承 Sika Red / Sika Yellow / 暖砂灰变量,这里只写"这个组件长什么样、怎么用"。
 
 ## 目录
 
@@ -18,6 +18,14 @@
 - [Ghost 巨型背景字](#ghost-巨型背景字)
 - [Highlight 荧光标记](#highlight-荧光标记)
 - [Motion 动效系统](#motion-动效系统)
+
+---
+
+## Sika 配色组件口径
+
+- 组件不要手写非 Sika hex；使用模板变量和 `.sika-brand-band`、`.sika-corner`、`.sika-badge`、`.sika-stripe`。
+- `light` 页默认是暖黄纸底,`dark` 页默认是 Sika Red 深色页语义。
+- 黄色只做品牌识别和轻量强调,不要承载大段正文。
 
 ---
 

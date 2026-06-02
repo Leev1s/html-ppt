@@ -58,7 +58,7 @@ layouts.md 使用的所有类（`h-hero` / `h-xl` / `h-sub` / `h-md` / `lead` / 
 
 ### D. 主题色与主题节奏
 
-- 主题色从 `references/themes.md` 的 5 套预设里选一套,不允许自定义 hex 值
+- 主题色固定为 `references/themes.md` 的 Sika Corporate,不允许自定义 hex 值或切换非 Sika 色板
 - 主题节奏(每页用 light / dark / hero light / hero dark 哪一个)在下文"主题节奏规划"一节有硬规则,生成前必读
 - 两件事都要在挑布局之前决定,避免返工
 
@@ -126,7 +126,7 @@ layouts.md 使用的所有类（`h-hero` / `h-xl` / `h-sub` / `h-md` / `lead` / 
 |---|---|---|
 | 1. 开场封面 | `hero dark` | 开场仪式感,暗底强冲击 |
 | 2. 章节幕封 | `hero dark` 与 `hero light` **必须交替** | 呼吸节奏 |
-| 3. 大字报(数据) | `light` | 数字需纸白底;多幕连发时可偶插 `dark` |
+| 3. 大字报(数据) | `light` | 数字需暖黄纸底;多幕连发时可偶插 `dark` |
 | 4. 左文右图 | **`light` / `dark` 交替** | 正文节奏主力 |
 | 5. 图片网格 | `light` | 截图需亮底 |
 | 6. Pipeline | `light` | 流程图需清晰 |

@@ -75,7 +75,7 @@ node <SKILL_ROOT>/scripts/validate-swiss-deck.mjs path/to/index.html
 - 13-15px → weight **500-600**
 - 同一页内,字号小的元素字重必须 ≥ 字号大的元素。
 - **16px 左右小字禁止使用 weight 300**(太细不可读),最低 400,推荐 500。
-- 封面/IKB 反白大标题内强调字用 `italic + weight 300`,不要用 accent 色。
+- 封面/Sika Red 反白大标题内强调字用 `italic + weight 300`,不要用 accent 色。
 
 **检查**:
 - `rg -n "font-size:(10px|11px|12px|13px)|max\\((9|10|11|12|13)px" index.html`
@@ -130,24 +130,24 @@ node <SKILL_ROOT>/scripts/validate-swiss-deck.mjs path/to/index.html
 
 例外:head 一行同时承载"左:kicker+大标题(自己上下叠)"和"右:小注脚",外层可以用 `display:grid;grid-template-columns:1fr auto`,但**内层**仍要保持 flex column。
 
-### 0-B-2. 瑞士风封面 / 封底默认:IKB 满屏 + ASCII 呼吸场 + 白色 weight 200(强制)
+### 0-B-2. 瑞士风封面 / 封底默认:Sika Red 满屏 + ASCII 呼吸场 + 白色 weight 200(强制)
 
 **现象**:封面用 `slide light` 白底 + 黑字 + 一个大大的"01"——同时 chrome 角标已经写了 `01 / 07`,屏幕上出现两个"01",视觉重复;白底太普通,完全没有"开场打招呼"的仪式感。
 
-**根因**:layouts-swiss.md 旧版默认推荐左 ink + 右 paper 对开,实操中容易写成"白底 + 黑大字 + 编号大字",失去 IKB 这个标志色的开场冲击。
+**根因**:layouts-swiss.md 旧版默认推荐左 ink + 右 paper 对开,实操中容易写成"白底 + 黑大字 + 编号大字",失去 Sika Red 这个标志色的开场冲击。
 
 **做法**(瑞士风必守):
-- **封面强制 `<section class="slide accent">`**(满屏 IKB),不要 `slide.light`,也不要 `slide.dark`;在 `.canvas-card` 内**第一个子元素**插入 `<canvas class="ascii-bg">`(ASCII 字符呼吸场,模板自带 IIFE 自动激活)
+- **封面强制 `<section class="slide accent">`**(满屏 Sika Red),不要 `slide.light`,也不要 `slide.dark`;在 `.canvas-card` 内**第一个子元素**插入 `<canvas class="ascii-bg">`(ASCII 字符呼吸场,模板自带 IIFE 自动激活)
 - **不要再写"01"等编号大字**:`.chrome-min` 已经显示 `01 / N`,封面再放一个巨大的"01"=同义重复,直接删掉
-- **强调字必须用斜体**:`font-style:italic;font-weight:300`,**禁止**用 `color:var(--accent)`——IKB 蓝压 IKB 蓝,人眼看不见任何强调
-- **封底强制 `slide.split`** 双半屏,左半 `.half.b-accent` + ASCII canvas(与封面色彩闭环),右半 paper 白底放 3 条 takeaway;**第 03 条**用 `var(--accent)` 上色,完成"开场全 IKB ↔ 收尾半 IKB"的色彩闭环
+- **强调字必须用斜体**:`font-style:italic;font-weight:300`,**禁止**用 `color:var(--accent)`——Sika Red压 Sika Red,人眼看不见任何强调
+- **封底强制 `slide.split`** 双半屏,左半 `.half.b-accent` + ASCII canvas(与封面色彩闭环),右半 paper 白底放 3 条 takeaway;**第 03 条**用 `var(--accent)` 上色,完成"开场全 Sika Red ↔ 收尾半 Sika Red"的色彩闭环
 - ASCII canvas 在模板的 `<style>` 里已经预设 `mix-blend-mode:screen;opacity:.92`,不要去动这个值
 - 封面/封底主标题字号双约束:`min(11.6vw,19vh)` ~ `min(8vw,14vh)`(遵守 Y ≥ X × 1.6 规则)
 
 **自检命令**:
 - `grep -c "ascii-bg" index.html`——封面 + 封底应至少命中 ≥ 2(各一个 canvas)
 - `grep -E '"slide accent"' index.html | head -1`——封面应是 `slide accent` 而非 `slide light`
-- `grep "color:var(--accent)" index.html`——若命中行同时含 `font-style:italic` 即危险信号(蓝压蓝),改为只 italic 不 accent;只有封底"03 takeaway"那一处用 `var(--accent)` 是合法的(此时背景是白色)
+- `grep "color:var(--accent)" index.html`——若命中行同时含 `font-style:italic` 即危险信号(红压红),改为只 italic 不 accent;只有封底"03 takeaway"那一处用 `var(--accent)` 是合法的(此时背景是白色)
 - 目视:打开页面看封面有没有"01"等大编号——有就删
 
 ### 0-C. 瑞士风大字号双约束:`min(Xvw, Yvh)` 中 Y ≥ X × 1.6
@@ -523,11 +523,11 @@ JS 会动态算总页数并扩展底部翻页圆点，但 `.chrome` 里的 `XX /
   □ 已画出"主题节奏表":每页明确 hero dark / hero light / light / dark
   □ 节奏表满足硬规则:无连续 3 页同主题 / 有 ≥1 hero dark + ≥1 hero light(8 页以上) / 至少有 1 个 dark 正文页
   □ `<title>` 已改为实际 deck 标题(grep "[必填]" 应无结果)
-  □ 瑞士风:封面是 `slide accent` 满屏 IKB + `<canvas class="ascii-bg">`(不是 `slide light` 白底)
+  □ 瑞士风:封面是 `slide accent` 满屏 Sika Red + `<canvas class="ascii-bg">`(不是 `slide light` 白底)
   □ 瑞士风:封底是 `slide split` + 左 `b-accent` + ASCII canvas / 右 paper 3 条 takeaway,第 03 条用 var(--accent)
   □ 瑞士风:`grep -c "ascii-bg" index.html` ≥ 2(封面 + 封底各一)
   □ 瑞士风:封面没有"01"等大编号(chrome 已显示 01/N,不要重复)
-  □ 瑞士风:IKB 背景上的强调字用 `font-style:italic`,禁止用 `color:var(--accent)`(蓝压蓝)
+  □ 瑞士风:Sika Red 背景上的强调字用 `font-style:italic`,禁止用 `color:var(--accent)`(红压红)
 
 内容
   □ 每一幕的页数比例合理(不会头重脚轻)

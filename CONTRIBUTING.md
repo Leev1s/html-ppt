@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for helping improve `guizang-ppt-skill`.
+Thanks for helping improve `sika-ppt-skill`.
 
 This project is a Skill for AI agents that generate polished HTML slide decks. The most useful contributions are specific, reproducible, and tied to real deck output.
 

@@ -48,64 +48,15 @@
 
 ## 风格映射
 
-### Style A · 电子杂志风
+### Sika 截图背景口径
 
-- 背景: `paper` / `blurred` / 低饱和 `gradient`
-- 质感:纸张、墨水、胶片颗粒、暖白、低对比
-- 截图:可用小圆角和轻微阴影,但不要像 SaaS 营销卡片
-- 背景资产:优先使用 `assets/screenshot-backgrounds/style-a/` 下对应主题的 16:9 crop-safe WebP,截图合成时按槽位裁切
-- 推荐语义:
+本仓库当前按 Sika Corporate 统一截图背景。旧的 WebP 背景资产可以继续作为纹理底图使用,但最终合成必须叠加 Sika Red / Sika Yellow / 暖砂灰的统一视觉,不要让旧主题色成为页面主视觉。
 
-```text
-ratio:16:10, background:paper, padding:standard, inset:balanced, shadow:editorial, corners:small, alignment:center
-```
-
-### Style B · 瑞士国际主义
-
-- 背景: `plain` / `grid` / `dot-matrix`
-- 色彩:只允许当前锚点色作为极低占比强调;不要大面积亮色块
-- 截图:直角、无阴影、无圆角、少量 hairline 或顶部 accent 线
-- 背景资产:优先使用 `assets/screenshot-backgrounds/style-b/` 下对应主题色的 16:9 crop-safe WebP,只用当前 accent,不要混色
-- 推荐语义:
-
-```text
-ratio:21:9, background:grid, padding:standard, inset:subtle, shadow:none, corners:square, alignment:center
-```
-
-## 背景强度规则
-
-截图背景是“托底”,不是主视觉。
-
-- 如果 `alignment` 不确定,背景中心和四角都必须安静,不要放显眼色块。
-- 如果截图要放在右下角,右下角不能有强色块;其他位置同理。
-- 瑞士风锚点色只做 `5%-8%` 视觉占比的淡线、点阵或极浅几何场,不要生成高亮蓝条、大色块、霓虹渐变。
-- 背景不能有文字、logo、图标、人物、设备、边框、明显主体或方向性构图。
-- 背景必须 crop-safe:裁成 `21:9`、`16:10`、`4:3`、`1:1` 都不能暴露“被裁掉”的痕迹。
-
-## 内置主题背景资产
-
-本 Skill 已经内置一组 GPT-M 2.0 预生成背景。处理截图时**优先使用这些资产**,不要实时调用 GPT-M 2.0 重新生成背景。只有用户明确要求新风格、现有主题缺失,或背景与内容明显不匹配时,才生成新的背景。
-
-背景图之后由程序复用到每张截图中。不要把背景当作单张 slide 来画,背景图内部不能有标题、页脚、边框、logo、人物或明显主体。
-
-### Style A · 5 套主题背景
-
-| 主题 | 内置资产 | 背景语义 |
+| 用途 | 推荐资产 | Sika 处理方式 |
 |---|---|---|
-| 墨水经典 | `assets/screenshot-backgrounds/style-a/monocle-classic.webp` | 黑白灰纸张纹理、柔和阴影、细颗粒 |
-| 靛蓝瓷 | `assets/screenshot-backgrounds/style-a/indigo-porcelain.webp` | 靛蓝低饱和墨色、纸感渐变、轻微噪点 |
-| 森林墨 | `assets/screenshot-backgrounds/style-a/forest-ink.webp` | 模糊植物阴影、低饱和绿色、纸张颗粒 |
-| 牛皮纸 | `assets/screenshot-backgrounds/style-a/kraft-paper.webp` | 暖纸色、淡墨阴影、复古印刷颗粒 |
-| 沙丘 | `assets/screenshot-backgrounds/style-a/dune.webp` | 沙色/灰调柔和渐变、低对比、留白安静 |
-
-### Style B · 4 套主题背景
-
-| 主题色 | 内置资产 | 背景语义 |
-|---|---|---|
-| IKB 蓝 | `assets/screenshot-backgrounds/style-b/ikb-dot-gradient.webp` | 点阵 + 低对比蓝色渐变,避免亮蓝大色块 |
-| 柠檬黄 | `assets/screenshot-backgrounds/style-b/lemon-grid.webp` | 纯网格 + 稀疏点阵,黄色只做低透明细线/点 |
-| 柠檬绿 | `assets/screenshot-backgrounds/style-b/lemon-green-dot-shadow.webp` | 点阵 + 阴影场,绿色只做轻微光感 |
-| 安全橙 | `assets/screenshot-backgrounds/style-b/safety-orange-halftone.webp` | 模块化半调点阵 + 暗部阴影,橙色低占比 |
+| Style A 电子杂志截图 | `assets/screenshot-backgrounds/style-a/kraft-paper.webp` 或 `dune.webp` | 叠加 `#fff8e6` 暖黄纸底,用 `#D8282F` 做 1px 顶线或角标。 |
+| Style B 瑞士截图 | `assets/screenshot-backgrounds/style-b/lemon-grid.webp` 或 `safety-orange-halftone.webp` | 降低原图饱和度,叠加暖砂灰,只保留 Sika Red 小面积线条/编号。 |
+| 需要更强品牌识别 | 任意安静四角背景 | 额外加 `.sika-brand-band` 同语义的顶部黄条 + 右侧红段。 |
 
 内置背景都是 1920×1080 级别的 16:9 WebP。程序化合成时,先把背景 cover 到目标画布,再裁成 `21:9` / `16:10` / `4:3` / `1:1` 等截图槽位。背景必须四角安静,因为截图可能居中、左上、右下或被裁成不同尺寸。
 
@@ -127,11 +78,11 @@ ratio:21:9, background:grid, padding:standard, inset:subtle, shadow:none, corner
 ### Style A 背景
 
 ```text
-16:9 crop-safe screenshot background for an editorial magazine / e-ink PPT system. Warm off-white paper texture, subtle ink wash, fine film grain, low contrast, quiet center and quiet corners, no text, no logo, no objects, no border, no focal subject. Suitable for cropping to 21:9, 16:10, 4:3, or 1:1.
+16:9 crop-safe screenshot background for a Sika editorial magazine PPT system. Warm Sika yellow paper texture (#fff8e6), subtle Sika Red hairline accents (#D8282F), fine film grain, low contrast, quiet center and quiet corners, no text, no logo, no objects, no border, no focal subject. Suitable for cropping to 21:9, 16:10, 4:3, or 1:1.
 ```
 
 ### Style B 背景
 
 ```text
-16:9 crop-safe screenshot background for a Swiss International Style PPT system. Pure off-white base, ultra-subtle 16-column grid and sparse dot matrix, one accent color only: [theme color], used at very low opacity as thin lines or tiny dots, no large bright color blocks. Quiet center and quiet corners, no text, no logo, no objects, no border, no focal subject. Suitable for cropping to 21:9, 16:10, 4:3, or 1:1.
+16:9 crop-safe screenshot background for a Sika Swiss International Style PPT system. Warm off-white base (#fff8e6), ultra-subtle 16-column grid and sparse dot matrix, Sika Red (#D8282F) only as very low-opacity thin lines or tiny dots, Sika Yellow (#F5B325) only as a small brand band cue, no large bright color blocks. Quiet center and quiet corners, no text, no logo, no objects, no border, no focal subject. Suitable for cropping to 21:9, 16:10, 4:3, or 1:1.
 ```

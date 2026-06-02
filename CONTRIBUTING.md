@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for helping improve `guizang-ppt-skill`.
+Thanks for helping improve `sika-ppt-skill`.
 
 This project is a Skill for AI agents that generate polished HTML slide decks. The most useful contributions are specific, reproducible, and tied to real deck output.
 
@@ -25,11 +25,11 @@ Screenshots are much more useful than descriptions alone. If possible, include:
 
 Keep PRs focused. A small fix with a screenshot is easier to review than a large rewrite.
 
-For Swiss theme changes:
+For Sika Precision template changes:
 
 - Do not invent new default body layouts unless the change is explicitly discussed.
 - Keep the registered layout system intact.
-- Run the Swiss validator:
+- Run the Sika Precision validator:
 
 ```bash
 node scripts/validate-swiss-deck.mjs path/to/index.html
@@ -48,7 +48,7 @@ For template changes:
 - Before / after screenshots when visual behavior changes.
 - Validation or manual QA notes.
 
-## Style Notes
+## Sika Style Notes
 
 This Skill is opinionated by design. It prefers constrained layout systems over unlimited customization, because constraints make AI-generated decks more reliable.
 

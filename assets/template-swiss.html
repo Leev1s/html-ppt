@@ -9,31 +9,33 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600&family=Noto+Sans+SC:wght@200;300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    /* ============ 主题色(默认: 🔵 克莱因蓝 IKB) ============
-       切换主题: 从 references/themes-swiss.md 复制对应的 :root 块
-       整体替换标有"主题色"注释的所有变量,其他散落的 var() 引用无需逐处改 */
-    --paper:#fafaf8;          /* 主底色: 高级灰白 */
-    --paper-rgb:250,250,248;
-    --ink:#0a0a0a;            /* 文字主色: 近黑 */
-    --ink-rgb:10,10,10;
-    --grey-1:#f0f0ee;         /* 浅灰底 */
-    --grey-2:#d4d4d2;         /* 中灰(分割线) */
-    --grey-3:#737373;         /* 暗灰(辅助文字) */
-    --accent:#002FA7;         /* 高亮色: 克莱因蓝 IKB */
-    --accent-rgb:0,47,167;
-    --accent-on:#ffffff;      /* accent 上的反色文字 */
-    --accent-bright:#5B7BFF;  /* 暗底高亮: IKB 提亮版 */
+    /* ============ 主题色(默认: 🟨 Sika Corporate) ============
+       Sika 固定主题:变量来源见 references/themes-swiss.md
+       不切换非 Sika 色板;其他散落的 var() 引用无需逐处改 */
+    --paper:#fff8e6;          /* 主底色: Sika 黄的低饱和暖白 */
+    --paper-rgb:255,248,230;
+    --ink:#1f1713;            /* 文字主色: 建材/沥青感深褐黑 */
+    --ink-rgb:31,23,19;
+    --grey-1:#f6ead1;         /* 浅灰黄底 */
+    --grey-2:#dfcda8;         /* 中性砂浆线 */
+    --grey-3:#755f42;         /* 辅助文字 */
+    --accent:#D8282F;         /* Sika Red · Pantone 1795 C */
+    --accent-rgb:216,40,47;
+    --accent-on:#ffffff;      /* red 上的反色文字 */
+    --accent-bright:#F5B325;  /* Sika Yellow · Pantone 7409 C */
+    --brand-secondary:#F5B325;
+    --brand-secondary-rgb:245,179,37;
 
     /* ============ Carbon 文本角色 token (role-based,代替 opacity) ============
        亮底:  primary 主文 / secondary 次文 / helper 辅助 / placeholder 占位
        暗底:  inverse 自动反向 */
-    --text-primary:#0a0a0a;        /* = ink, 100% */
-    --text-secondary:#525252;      /* gray 70 */
-    --text-helper:#737373;         /* gray 60 */
+    --text-primary:var(--ink);        /* = ink, 100% */
+    --text-secondary:#5b4635;      /* warm gray 70 for Sika */
+    --text-helper:var(--grey-3);         /* warm gray 60 for Sika */
     --text-placeholder:#a3a3a3;    /* gray 40 */
     --text-on-color:#ffffff;       /* accent/dark 反色 */
-    --border-subtle:#e0e0e0;       /* gray 20, 极细分隔 */
-    --border-strong:#a3a3a3;       /* gray 40, 强分隔 */
+    --border-subtle:#eadbb9;       /* warm hairline for Sika */
+    --border-strong:#bfaa83;       /* warm strong line for Sika */
 
     /* ============ 字体(跨主题固定) ============ */
     --sans:"Inter","Helvetica Neue","Helvetica","Arial","Segoe UI Variable","Segoe UI",system-ui,-apple-system,sans-serif;
@@ -102,6 +104,9 @@
   .slide.dark .grey-only{display:none}
   .slide.accent{background:var(--accent);color:var(--accent-on)}
   .slide.accent .accent-block{background:var(--accent-on);color:var(--accent)}
+  .slide.sika-yellow{background:var(--brand-secondary);color:var(--ink)}
+  .slide.sika-yellow .accent-block{background:var(--accent);color:var(--accent-on)}
+  .slide.sika-yellow .tag.accent{background:var(--ink);color:var(--brand-secondary)}
 
   /* Hero 页透出网格背景多一点 */
   .slide.hero{background:transparent}
@@ -175,6 +180,40 @@
   }
   .tag.solid{background:currentColor;color:var(--paper);border-color:transparent}
   .tag.accent{background:var(--accent);color:var(--accent-on);border-color:transparent;opacity:1}
+
+  /* ============ Sika 企业风辅助元素 ============
+     使用 Sika Red + Sika Yellow 的工业识别,只做角标/横条/编号块,避免仿制完整商标。 */
+  .sika-brand-band{
+    position:absolute;inset:0 auto auto 0;width:100%;height:14px;
+    background:var(--brand-secondary);z-index:2;pointer-events:none
+  }
+  .sika-brand-band::after{
+    content:"";position:absolute;right:0;top:0;height:100%;width:28%;background:var(--accent)
+  }
+  .sika-corner{
+    position:absolute;right:0;top:0;width:min(18vw,230px);height:min(18vw,230px);
+    background:var(--brand-secondary);clip-path:polygon(100% 0,100% 100%,0 0);
+    z-index:0;pointer-events:none;opacity:.95
+  }
+  .sika-corner::after{
+    content:"";position:absolute;right:0;top:0;width:72%;height:72%;
+    background:var(--accent);clip-path:polygon(100% 0,100% 100%,0 0);
+  }
+  .sika-badge{
+    display:inline-flex;align-items:center;justify-content:center;
+    min-width:5.2em;padding:.36em .72em .32em;
+    background:var(--brand-secondary);color:var(--accent);
+    font-family:var(--sans);font-weight:900;font-style:italic;letter-spacing:-.04em;
+    text-transform:uppercase;line-height:1;transform:skew(-8deg);
+  }
+  .sika-badge > span{transform:skew(8deg)}
+  .sika-stripe{position:relative;height:10px;background:var(--brand-secondary)}
+  .sika-stripe::after{content:"";position:absolute;right:0;top:0;height:100%;width:32%;background:var(--accent)}
+  .sika-yellow .sika-stripe{background:var(--ink)}
+  .sika-yellow .sika-stripe::after{background:var(--accent)}
+  .sika-reverse-panel{background:var(--brand-secondary);color:var(--ink);border:1px solid rgba(var(--ink-rgb),.26)}
+  .sika-reverse-panel.red{background:var(--accent);color:var(--accent-on);border-color:var(--accent)}
+  .sika-reverse-panel .t-cat,.sika-reverse-panel .t-meta{color:currentColor;opacity:.72}
 
   /* ============ 标题层级 (无衬线 · 极轻字重 · 极致字号对比) ============ */
   .h-hero{
@@ -656,10 +695,15 @@
   }
   .slide.dark .canvas-card{background:var(--ink);color:var(--paper)}
   .slide.accent .canvas-card{background:var(--accent);color:var(--accent-on)}
+  .slide.sika-yellow .canvas-card{background:var(--brand-secondary);color:var(--ink)}
+  .slide.sika-yellow .canvas-card .chrome-min,
+  .slide.sika-yellow .canvas-card .t-meta{color:rgba(var(--ink-rgb),.72)}
+  .slide.sika-yellow .canvas-card .rule,
+  .slide.sika-yellow .canvas-card [style*="border-top"]{border-color:rgba(var(--ink-rgb),.28)!important}
   .slide.grey .canvas-card{background:var(--grey-1);color:var(--ink)}
   .slide.split .canvas-card{padding:0;flex-direction:row}
 
-  /* ============ ASCII 点阵呼吸场 · IKB 封面/封底专用 ============
+  /* ============ ASCII 点阵呼吸场 · 品牌色封面/封底专用 ============
      用法:在 .canvas-card(或 split .half.b-accent)内首位插入 <canvas class="ascii-bg" aria-hidden="true">.
      动画由本文件底部的 ASCII IIFE 自动启动,所有 canvas.ascii-bg 都会被扫到.
      其他内容靠 .canvas-card > *:not(.ascii-bg){z-index:1} 自动浮在上层. */
@@ -906,7 +950,7 @@
   .bar-tower .body-block.h-2{min-height:30vh}
   .bar-tower .body-block.h-3{min-height:38vh}
   .bar-tower .body-block.h-4{min-height:46vh}
-  /* 默认所有 KPI 塔统一为浅描边卡 — 不抢戏;只有 .b-accent 突出为 IKB */
+  /* 默认所有 KPI 塔统一为浅描边卡 — 不抢戏;只有 .b-accent 突出为品牌红色 */
   .bar-tower .body-block{background:var(--paper);color:var(--ink);border:1px solid var(--grey-2)}
   .bar-tower .body-block.b-accent{background:var(--accent);color:var(--accent-on);border-color:var(--accent)}
   .bar-tower .lbl{font-family:var(--mono);font-size:max(14px,.82vw);letter-spacing:.16em;text-transform:uppercase;opacity:.65;margin-bottom:1vh}
@@ -1189,7 +1233,7 @@
     document.body.classList.add('is-win');
   }
   (function(){
-    const KEY = 'guizang-ppt-low-power';
+    const KEY = 'sika-ppt-low-power';
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const stored = localStorage.getItem(KEY);
     window.__lowPowerMode = stored === '1' || (stored === null && reduced);
@@ -1221,14 +1265,14 @@
 <!-- ============================================================
      SLIDES 插入区 · 在此处填充所有 <section class="slide ..."> 页面
      页面骨架参考 references/layouts-swiss.md
-     主题色配置参考 references/themes-swiss.md
+     Sika 配色配置参考 references/themes-swiss.md
      ============================================================ -->
 <!-- SLIDES_HERE · 在此处粘贴 <section class="slide ..."> 页面块
      - 页面骨架直接从 references/layouts-swiss.md 拷贝
      - data-animate="..." 必须命中下方 RECIPES 字典里的已有 recipe 名之一(P23/P24 可复用 grid-reveal)
-     - 主题色配置参考 references/themes-swiss.md (默认 IKB 克莱因蓝) -->
+     - Sika 配色配置参考 references/themes-swiss.md (默认 Sika Corporate) -->
 
-<!-- ============ 示例:第 1 页 · Hero Cover · IKB 满屏 + ASCII 呼吸场(默认推荐) ============
+<!-- ============ 示例:第 1 页 · Hero Cover · Sika Red 满屏 + Yellow 角标/ASCII 呼吸场(默认推荐) ============
      ⚠️ P0 对齐法则(每页都要过):
      1. .canvas-card 已自带 padding:5.6vh 5vw 4.4vh,所有页面内容直接放在 canvas-card 子元素里,
         子元素**不要再加水平 padding**,否则会比 chrome-min 内缩一圈、左右不对齐.
@@ -1237,16 +1281,17 @@
      3. 大字号一律用双约束 font-size:min(Xvw, Yvh),Y ≥ X * 1.6 才不会在 16:9 屏被高度截断.
      4. kicker 必须在大标题"上方",不是左侧——禁止 grid-template-columns:auto 1fr 把它们压成左右.
 
-     封面/封底设计语言(默认 IKB 满屏 + ASCII 呼吸场):
-     - section 用 .slide.accent (满屏 IKB,不是 light 白底)
+     封面/封底设计语言(默认 Sika Red 满屏 + Sika Yellow 角标/ASCII 呼吸场):
+     - section 用 .slide.accent (满屏 Sika Red,不是 light 白底)
      - canvas-card 内首位插入 <canvas class="ascii-bg" aria-hidden="true">,本文件底部 IIFE 自动启动
-     - 主标题反白 weight 200,强调字用斜体而非 var(--accent)(底已是蓝,蓝压蓝看不见)
+     - 主标题反白 weight 200,强调字用斜体；黄色只做角标/条带,避免标题变脏
      - 不要再放编号大字"01"——chrome-min 已经标 01/NN -->
-<section class="slide accent" data-animate="hero">
+<section class="slide accent" data-layout="SWISS-COVER-ASCII" data-animate="hero">
   <div class="canvas-card">
     <canvas class="ascii-bg" aria-hidden="true"></canvas>
+    <div class="sika-corner" aria-hidden="true"></div>
     <div class="chrome-min">
-      <div class="l">[必填] Deck 标题 · Issue/Field Note 编号</div>
+      <div class="l"><span class="sika-badge"><span>Sika</span></span> · [必填] Deck 标题</div>
       <div class="r">SS · 25.05.10 · 01 / NN</div>
     </div>
 
@@ -1254,7 +1299,7 @@
     <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr auto;gap:2.6vh">
       <div data-anim="kicker" class="t-meta" style="color:rgba(255,255,255,.78);letter-spacing:.22em">[必填] 章节英文 / Section En</div>
 
-      <h1 data-anim="title" style="align-self:center;font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(11.6vw,19vh);line-height:.94;letter-spacing:-.025em;color:#fff">[必填] 中文主标题<br/>(≤ 12 字,可在某字加 <span style="font-style:italic;font-weight:300">italic</span> 微强调)</h1>
+      <h1 data-anim="title" style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(11.6vw,19vh);line-height:.94;letter-spacing:-.025em;color:#fff">[必填] 中文主标题<br/>(≤ 12 字,可在某字加 <span style="font-style:italic;font-weight:300">italic</span> 微强调)</h1>
 
       <div data-anim="bottom" style="display:grid;grid-template-rows:auto auto;gap:1.6vh;border-top:1px solid rgba(255,255,255,.22);padding-top:2vh">
         <div data-anim="lead" class="lead" style="max-width:52ch;color:rgba(255,255,255,.86)">[必填] 一段 1-2 行的副标 / 引子,定调全场.</div>
@@ -1267,15 +1312,60 @@
   </div>
 </section>
 
-<!-- ============ 示例:最后一页 · Closing Manifesto · 左 IKB+ASCII / 右白底 takeaway ============
-     与封面 IKB 首尾呼应,但收束更克制:左半保留 ASCII 呼吸场承载宣言,右半白底列 3 条 takeaway.
-     第 03 条用 var(--accent) IKB 蓝强调("单一锚点"原则),首尾形成"色彩闭环". -->
-<section class="slide split" data-animate="split-statement">
+<!-- ============ 可选黄底模板 A · Yellow Cover · 红黄反转封面 ============
+     使用场景:需要更强 Sika Yellow 背景,但标题仍用 Sika Red/深墨保持可读。
+     复制时保留 data-layout="SWISS-COVER-ASCII";这是封面变体,不是正文新 layout。
+<section class="slide sika-yellow" data-layout="SWISS-COVER-ASCII" data-animate="hero">
+  <div class="canvas-card">
+    <div class="sika-brand-band" aria-hidden="true"></div>
+    <div class="chrome-min">
+      <div class="l"><span class="sika-badge"><span>Sika</span></span> · [必填] Yellow Issue</div>
+      <div class="r">YY · 01 / NN</div>
+    </div>
+    <div style="flex:1;display:grid;grid-template-rows:auto 1fr auto;gap:2.6vh;padding:0">
+      <div data-anim="kicker" class="t-meta" style="letter-spacing:.22em">SIKA YELLOW MODE</div>
+      <h1 data-anim="title" style="align-self:center;font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(11vw,18vh);line-height:.92;letter-spacing:-.03em;color:var(--accent)">[必填] 黄底主标题<br/><span style="font-style:italic;font-weight:300;color:var(--ink)">Red Focus</span></h1>
+      <div data-anim="bottom" style="display:grid;gap:1.6vh;border-top:2px solid var(--accent);padding-top:2vh">
+        <div class="lead" style="max-width:52ch;color:var(--ink)">[必填] 一段 1-2 行副标,说明黄底页用于品牌开场/章节反转。</div>
+        <div class="t-meta" style="display:flex;justify-content:space-between"><span>Sika Corporate</span><span>→ swipe</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+-->
+
+<!-- ============ 可选黄底模板 B · Yellow KPI Strip · 数据反转页 ============
+     使用场景:3-4 个关键数字,黄底承载品牌能量,红色只突出最重要一项。
+     复制时选 S05/S21 等原登记数据版式 data-layout,不要新增正文 layout。
+<section class="slide sika-yellow" data-layout="S05" data-animate="grid-reveal">
+  <div class="canvas-card">
+    <div class="chrome-min"><div class="l">SIKA DATA</div><div class="r">NN / NN</div></div>
+    <div style="display:grid;grid-template-rows:auto 1fr;gap:6vh;flex:1">
+      <div>
+        <div class="t-cat" data-anim="kicker" style="color:var(--accent)">YELLOW BACKGROUND · RED KPI</div>
+        <h2 data-anim="title" class="h-xl-zh" style="color:var(--ink);max-width:12ch">[必填] 黄底数据结论</h2>
+      </div>
+      <div data-anim="cards" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(var(--ink-rgb),.22);align-self:end">
+        <div class="sika-reverse-panel" style="padding:3vh 1.6vw"><div class="t-meta">01</div><div class="kpi-thin-sm">90d</div><p class="t-body">项目周期</p></div>
+        <div class="sika-reverse-panel" style="padding:3vh 1.6vw"><div class="t-meta">02</div><div class="kpi-thin-sm">24</div><p class="t-body">施工节点</p></div>
+        <div class="sika-reverse-panel red" style="padding:3vh 1.6vw"><div class="t-meta">03</div><div class="kpi-thin-sm">128</div><p class="t-body">质量检查</p></div>
+        <div class="sika-reverse-panel" style="padding:3vh 1.6vw"><div class="t-meta">04</div><div class="kpi-thin-sm">12K</div><p class="t-body">覆盖面积</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+-->
+
+<!-- ============ 示例:最后一页 · Closing Manifesto · 左 Sika Red+ASCII / 右暖白 takeaway ============
+     与封面 Sika Red 首尾呼应,但收束更克制:左半保留 ASCII 呼吸场承载宣言,右半暖白列 3 条 takeaway.
+     第 03 条用 var(--accent) Sika Red 强调,黄色只作为工业识别辅助条带. -->
+<section class="slide split" data-layout="SWISS-CLOSING-ASCII" data-animate="split-statement">
   <div class="canvas-card">
     <div class="split-half">
-      <!-- 左半 · IKB 宣言 + ASCII 呼吸场 -->
+      <!-- 左半 · Sika Red 宣言 + ASCII 呼吸场 -->
       <div class="half b-accent" style="padding:5.6vh 3.6vw 4.4vh;justify-content:space-between;position:relative;overflow:hidden">
         <canvas class="ascii-bg" aria-hidden="true"></canvas>
+        <div class="sika-brand-band" aria-hidden="true"></div>
         <div class="chrome-min" style="margin-bottom:0;position:relative;z-index:1">
           <div class="l">NN / NN</div>
           <div class="r">CLOSING</div>
@@ -1319,7 +1409,7 @@
             <div style="font-family:var(--sans);font-weight:200;font-size:min(4.4vw,7.8vh);line-height:.9;color:var(--accent)">03</div>
             <div>
               <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.8vw);line-height:1.2;letter-spacing:-.015em;color:var(--accent);margin-bottom:1vh">[必填] takeaway 标题 03 · accent 强调</h3>
-              <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,.94vw);line-height:1.6;color:var(--text-secondary);font-weight:400">[必填] 最后一条用 IKB 强调,与封面色彩首尾闭环.</p>
+              <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,.94vw);line-height:1.6;color:var(--text-secondary);font-weight:400">[必填] 最后一条用 Sika Red 强调,与封面色彩首尾闭环.</p>
             </div>
           </div>
         </div>
@@ -2312,9 +2402,9 @@ if(motion){
 </script>
 
 <script>
-/* ============== ASCII 点阵呼吸场 · IKB 封面/封底专用 ==============
+/* ============== ASCII 点阵呼吸场 · 品牌色封面/封底专用 ==============
    sin/cos 二维噪声场驱动字符显隐,营造工业仪表板的"涌动呼吸"质感.
-   纯 canvas 2D, mix-blend-mode:screen 让字符在 IKB 底色上自然发亮.
+   纯 canvas 2D, mix-blend-mode:screen 让字符在品牌红底色上自然发亮.
    用法:在需要呼吸场的容器(.canvas-card 或 split .half.b-accent)内首位插入
         <canvas class="ascii-bg" aria-hidden="true">,本脚本会自动扫描并启动. */
 (function(){

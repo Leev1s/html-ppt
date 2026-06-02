@@ -31,12 +31,12 @@ slides.forEach((slide) => {
   const layout = slide.tag.match(/\bdata-layout="([^"]+)"/)?.[1];
 
   if (!layout) {
-    errors.push(`Slide ${slide.idx}: missing data-layout. Swiss locked mode requires S01-S22 or SWISS-COVER-ASCII/SWISS-CLOSING-ASCII.`);
+    errors.push(`Slide ${slide.idx}: missing data-layout. Sika Precision locked mode requires S01-S22 or SWISS-COVER-ASCII/SWISS-CLOSING-ASCII.`);
   } else if (!allowedLayouts.has(layout)) {
-    errors.push(`Slide ${slide.idx}: data-layout="${layout}" is not registered in swiss-layout-lock.md.`);
+    errors.push(`Slide ${slide.idx}: data-layout="${layout}" is not registered in swiss-layout-lock.md (Sika Precision layout lock).`);
   }
 
-  if (!allowExperimental && /\bdata-layout="P2[34]\b|Swiss Image Split|Swiss Evidence Grid|swiss-img-split|swiss-img-grid/.test(slide.html)) {
+  if (!allowExperimental && /\bdata-layout="P2[34]\b|Sika Precision Image Split|Sika Precision Evidence Grid|swiss-img-split|swiss-img-grid/.test(slide.html)) {
     errors.push(`Slide ${slide.idx}: uses experimental P23/P24 image structure. Use S22 or S15/S16 image-grid adaptations instead.`);
   }
 
@@ -44,15 +44,15 @@ slides.forEach((slide) => {
   const topChunk = slide.html.slice(0, 1800);
 
   if (!isStatement && /text-align\s*:\s*center/i.test(topChunk)) {
-    errors.push(`Slide ${slide.idx}: top title area contains text-align:center. Swiss body titles should stay left aligned.`);
+    errors.push(`Slide ${slide.idx}: top title area contains text-align:center. Sika Precision body titles should stay left aligned.`);
   }
 
   if (!isStatement && /align-self\s*:\s*center/i.test(topChunk) && /<h[12]\b/i.test(topChunk)) {
-    errors.push(`Slide ${slide.idx}: top heading appears vertically/centrally aligned. Use the original left-top title skeleton.`);
+    errors.push(`Slide ${slide.idx}: top heading appears vertically/centrally aligned. Use the registered left-top title skeleton.`);
   }
 
   if (!isStatement && /grid-template-columns\s*:\s*[0-9.]+fr\s+[0-9.]+fr/i.test(topChunk) && /<h[12]\b/i.test(topChunk)) {
-    warnings.push(`Slide ${slide.idx}: heading inside a custom fr/fr grid. Confirm this is copied from the original Sxx skeleton, not a centered title hack.`);
+    warnings.push(`Slide ${slide.idx}: heading inside a custom fr/fr grid. Confirm this is copied from the registered Sxx skeleton, not a centered title hack.`);
   }
 
   if (/<svg\b[\s\S]*?<text\b/i.test(slide.html)) {
@@ -102,9 +102,9 @@ if (warnings.length) {
 }
 
 if (errors.length) {
-  console.error('Swiss deck validation failed:');
+  console.error('Sika Precision deck validation failed:');
   for (const error of errors) console.error(`- ${error}`);
   process.exit(1);
 }
 
-console.log(`Swiss deck validation passed: ${slides.length} slide(s).`);
+console.log(`Sika Precision deck validation passed: ${slides.length} slide(s).`);

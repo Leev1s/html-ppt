@@ -39,6 +39,24 @@
 
 ---
 
+
+## 主题衍生版（不新增色板）
+
+如果用户需要“更多 theme / 更多衍生版”,优先从 `references/theme-derivatives.md` 选择一个 `sika-theme/*` 预设。Style B 的主题衍生只改变红黄暖砂的占比、版式组合和证据类型,**不解除 S01-S22 版式锁**。
+
+Style B 常用预设:
+
+| 预设 | Style B 表达方式 |
+|---|---|
+| `sika-theme/corporate-core` | 默认红色封面/封底闭环 + 暖纸正文 + KPI 红色焦点。 |
+| `sika-theme/red-command` | 更多 `.accent` statement、KPI tower 和红色结论块,适合高压决策。 |
+| `sika-theme/yellow-signal` | 黄色角标、徽章、编号和流程路标更明显,适合培训/渠道/施工现场。 |
+| `sika-theme/blueprint-grid` | 强化网格、流程、地图、系统关系,用结构感替代新增颜色。 |
+| `sika-theme/supply-chain-map` | 优先 S08 Map Component、路线/节点/仓储/区域覆盖表达。 |
+| `sika-theme/product-proof` | 优先 S22 Image Hero、S15/S16 证据网格、KPI proof block。 |
+| `sika-theme/sand-technical` | 暖砂正文页、发丝表格、紧凑证据块,适合高信息密度技术内容。 |
+| `sika-theme/partner-workshop` | 编号练习、Duo Compare、Loop Diagram 和行动清单,适合工作坊。 |
+
 ## 内置 Sika 辅助元素
 
 | 类名 | 用途 |

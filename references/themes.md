@@ -33,6 +33,24 @@
 
 ---
 
+
+## 主题衍生版（不新增色板）
+
+如果用户需要“更多 theme / 更多衍生版”,优先从 `references/theme-derivatives.md` 选择一个 `sika-theme/*` 预设。它们不是新色板,而是 **Sika Red / Sika Yellow / 暖砂灰** 的面积、节奏、图片语义和组件侧重点组合。
+
+Style A 常用预设:
+
+| 预设 | Style A 表达方式 |
+|---|---|
+| `sika-theme/corporate-core` | 默认企业案例手册节奏:暖纸底 + 红标题 + 克制黄条。 |
+| `sika-theme/red-command` | 增加红/暗 hero 页和大标题 statement,适合战略、风险、决策。 |
+| `sika-theme/yellow-signal` | 增加黄色转场、角标、步骤标签,适合培训和现场指示语义。 |
+| `sika-theme/sand-technical` | 纸张/暖砂底优先,图解、参数、细节注释更密。 |
+| `sika-theme/material-lab` | 加强材料、实验、施工细节图片槽和 specimen label。 |
+| `sika-theme/sustainability-field` | 更轻的暖纸节奏 + 纪实图片,用内容和图像表达可持续,不引入绿色。 |
+| `sika-theme/event-keynote` | 大字号、少正文、hero / non-hero 交替更强,适合大屏演讲。 |
+| `sika-theme/report-editorial` | 杂志章节、拉引语、图文故事页更多,适合长文和案例册。 |
+
 ## 内置 Sika 辅助元素
 
 `assets/template.html` 已内置以下类，生成 deck 时可直接使用：

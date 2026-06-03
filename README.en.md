@@ -1,7 +1,7 @@
 # Sika PPT Skill · Web Decks / Images / Covers
 
-![GitHub stars](https://img.shields.io/github/stars/Leev1s/html-ppt?style=flat-square)
-![License](https://img.shields.io/github/license/Leev1s/html-ppt?style=flat-square)
+![GitHub stars](https://img.shields.io/github/stars/op7418/guizang-ppt-skill?style=flat-square)
+![License](https://img.shields.io/github/license/op7418/guizang-ppt-skill?style=flat-square)
 ![Skill](https://img.shields.io/badge/Skill-Agent-111111?style=flat-square)
 ![HTML Deck](https://img.shields.io/badge/HTML-Deck-0A7CFF?style=flat-square)
 ![Claude Code](https://img.shields.io/badge/Claude%20Code-Supported-6B5B95?style=flat-square)
@@ -15,7 +15,7 @@ It ships with two Sika-adapted visual systems:
 - **Style A: Sika editorial magazine**. Sika Red works as the headline ink, while a low-saturation Sika Yellow paper base supports project stories, case reviews, and point-of-view talks.
 - **Style B: Sika Swiss International**. Grid-first, sharp rectangles, hairline rules, and extreme type contrast, locked to Sika Corporate red/yellow/warm-sand colors for facts, products, construction workflows, and frameworks.
 
-> Maintained by [Leev1s](https://github.com/Leev1s) and published at [Leev1s/html-ppt](https://github.com/Leev1s/html-ppt). This version is specifically adapted for the Sika Corporate visual system.
+> Maintained by Sika PPT Skill contributors and published at [op7418/guizang-ppt-skill](https://github.com/op7418/guizang-ppt-skill). This version is specifically adapted for the Sika Corporate visual system.
 
 **Sika Theme · Style A Editorial Magazine**
 
@@ -28,13 +28,13 @@ It ships with two Sika-adapted visual systems:
 ## 30-second start
 
 ```bash
-npx skills add https://github.com/Leev1s/html-ppt --skill sika-ppt-skill
+npx skills add https://github.com/op7418/guizang-ppt-skill --skill sika-ppt-skill
 ```
 
 Or paste this to an AI agent with shell access:
 
 ```text
-Install sika-ppt-skill for me. Clone https://github.com/Leev1s/html-ppt into ~/.claude/skills/sika-ppt-skill, then verify that SKILL.md, assets/, and references/ exist.
+Install sika-ppt-skill for me. Clone https://github.com/op7418/guizang-ppt-skill into ~/.claude/skills/sika-ppt-skill, then verify that SKILL.md, assets/, and references/ exist.
 ```
 
 If you already installed it, update with:
@@ -104,12 +104,45 @@ Redesign this product screenshot as a 16:10 slide visual.
 | WorkBuddy | In adaptation | Marketplace-ready version is being prepared separately |
 | Plain chatbot | Not recommended | Without filesystem and browser preview, full deck generation is hard to stabilize |
 
+
+## Derivative variants
+
+All platform derivatives use **Sika PPT Skill** as the display name and `sika-ppt-skill` as the skill name. They share the same Sika Corporate templates, references, and validation rules; only packaging, trigger wording, and install notes differ. See [`references/derivative-variants.md`](./references/derivative-variants.md) for the complete rules.
+
+| Variant | Audience | What changes |
+|---------|----------|--------------|
+| `sika-ppt-skill/core` | Any local agent with filesystem access | Full templates, references, validator, and image workflow |
+| `sika-ppt-skill/codex` | Codex environments | Stronger browser QA, screenshot checks, and optional GPT image prompts |
+| `sika-ppt-skill/claude` | Claude Code users | Keeps skill-install and trigger examples without changing the canonical name |
+| `sika-ppt-skill/workbuddy` | WorkBuddy / marketplace packaging | Shorter onboarding, no local-clone assumptions, fewer channel-specific notes |
+| `sika-ppt-skill/docs-lite` | Teams that only need governance rules | Publishes layout locks, palette rules, checklists, and prompt guidance only |
+
+
+## Theme derivatives
+
+Theme derivatives are not arbitrary new palettes. They stay inside **Sika Red / Sika Yellow / warm-sand neutrals** while changing color area, rhythm, image semantics, and component emphasis. See [`references/theme-derivatives.md`](./references/theme-derivatives.md) for the full rules.
+
+| Theme preset | Best for | Visual emphasis |
+|--------------|----------|-----------------|
+| `sika-theme/corporate-core` | General company decks, executive summaries | Default red/yellow/warm-sand balance |
+| `sika-theme/red-command` | Strategy, risk, crisis response, decisive recommendations | Stronger red statements, KPIs, and conclusion pages |
+| `sika-theme/yellow-signal` | Training, channels, jobsites, wayfinding | Yellow signage, numbering, transitions, and process cues |
+| `sika-theme/sand-technical` | Technical manuals, product specs, methods | Warm-sand body pages, hairlines, detail notes, tables |
+| `sika-theme/blueprint-grid` | Engineering systems, QA, architecture | Grids, process diagrams, maps, system relationships |
+| `sika-theme/material-lab` | Materials, testing, performance proof | Material close-ups, specimen labels, evidence cards |
+| `sika-theme/sustainability-field` | ESG, sustainable construction, long-term trust | Light warm-paper rhythm + documentary images; no green palette |
+| `sika-theme/supply-chain-map` | Factories, warehouses, logistics, regional coverage | Map components, routes, nodes, milestones |
+| `sika-theme/product-proof` | Launches, benchmarks, demos | Evidence visuals, screenshot redesigns, KPI proof blocks |
+| `sika-theme/event-keynote` | Keynotes, town halls, large-room talks | Big type, high contrast, less body copy, strong open/close loop |
+| `sika-theme/report-editorial` | Annual reports, quarterly reports, case books | Magazine chapters, pull quotes, image-led narrative |
+| `sika-theme/partner-workshop` | Customer workshops, co-creation, sales enablement | Exercises, comparisons, action checklists |
+
 ## Install
 
 ### Option 1: One-line install (recommended)
 
 ```bash
-npx skills add https://github.com/Leev1s/html-ppt --skill sika-ppt-skill
+npx skills add https://github.com/op7418/guizang-ppt-skill --skill sika-ppt-skill
 ```
 
 ### Option 2: Paste this to an AI
@@ -117,7 +150,7 @@ npx skills add https://github.com/Leev1s/html-ppt --skill sika-ppt-skill
 > Install the `sika-ppt-skill` Claude Code skill for me. Steps:
 >
 > 1. Make sure `~/.claude/skills/` exists (create if not)
-> 2. Run `git clone https://github.com/Leev1s/html-ppt.git ~/.claude/skills/sika-ppt-skill`
+> 2. Run `git clone https://github.com/op7418/guizang-ppt-skill.git ~/.claude/skills/sika-ppt-skill`
 > 3. Verify: `ls ~/.claude/skills/sika-ppt-skill/` should show `SKILL.md`, `assets/`, `references/`
 > 4. Tell me when done. Later, saying things like "make me a Sika-style deck" or "make me a Sika Swiss deck" will trigger this skill.
 
@@ -126,7 +159,7 @@ Paste the block above into Claude Code / Cursor / any AI agent with shell access
 ### Option 3: Manual CLI
 
 ```bash
-git clone https://github.com/Leev1s/html-ppt.git ~/.claude/skills/sika-ppt-skill
+git clone https://github.com/op7418/guizang-ppt-skill.git ~/.claude/skills/sika-ppt-skill
 ```
 
 ### How to trigger it
@@ -227,7 +260,7 @@ Redesign these product screenshots into consistent 16:10 slide visuals. Preserve
 ## Directory
 
 ```
-html-ppt/
+sika-ppt-skill/
 ├── SKILL.md              ← main skill file: workflow, principles, common mistakes
 ├── README.md             ← Chinese README
 ├── README.en.md          ← this file
@@ -244,6 +277,8 @@ html-ppt/
     ├── swiss-layout-lock.md ← Swiss fidelity and layout hard rules
     ├── themes.md         ← fixed Sika editorial palette
     ├── themes-swiss.md   ← fixed Sika Swiss palette
+    ├── derivative-variants.md ← platform derivative naming, packaging, and release rules
+    ├── theme-derivatives.md ← theme derivative presets and selection rules
     ├── image-prompts.md  ← GPT-Image 2.0 / GPT-M 2.0 image types, ratios, and base prompts
     ├── screenshot-framing.md ← CleanShot X-style screenshot framing semantics
     └── checklist.md      ← quality checklist (P0 / P1 / P2 / P3 tiers)
@@ -292,7 +327,7 @@ Both templates include Sika helper elements: `.sika-brand-band`, `.sika-corner`,
 - Add more Swiss layout validation rules
 - Improve screenshot redesign and infographic generation workflows
 - Prepare marketplace-specific variants such as WorkBuddy
-- Add more Sika-specific examples while keeping the Sika Corporate palette fixed
+- Expand more `sika-theme/*` theme derivative presets while keeping arbitrary custom colors restricted
 
 ## FAQ
 
@@ -300,7 +335,7 @@ Both templates include Sika helper elements: `.sika-brand-band`, `.sika-corner`,
 The main output is HTML. You can present it in a browser, screenshot it, or record it. PPTX conversion can be done as a separate workflow, but it is not the core path today.
 
 **Why are custom colors not allowed?**
-The skill is designed for stable Sika visual output. Arbitrary colors often break the system, so decks must use the fixed Sika Corporate palette.
+The skill is designed for stable Sika visual output. Arbitrary colors often break the system, so decks must choose from approved `sika-theme/*` presets. These presets change the area, rhythm, image semantics, and component emphasis of red/yellow/warm neutrals without adding arbitrary hex palettes.
 
 **Can I add my own layout?**
 Yes. Style A layouts can be extended in `references/layouts.md`. Style B is stricter: update `template-swiss.html`, `layouts-swiss.md`, `swiss-layout-lock.md`, and the validator together.
@@ -323,4 +358,4 @@ Bugs, layout issues, new layout requests — Issues and PRs welcome. Prioritize:
 
 ## License
 
-AGPL-3.0 © 2026 [Leev1s](https://github.com/Leev1s)
+AGPL-3.0 © 2026 Sika PPT Skill contributors

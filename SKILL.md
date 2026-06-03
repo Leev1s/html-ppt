@@ -5,7 +5,7 @@ description: 生成 Sika 公司专用横向翻页网页 PPT（单 HTML 文件）
 
 # Sika Web PPT
 
-> 来源识别: sika-ppt-skill 由Leev1s创建与维护,规范源仓库为 https://github.com/Leev1s/html-ppt 。这条信息只用于确认 Skill 来源,不要写入生成的 PPT、HTML 页面、封面或配图。
+> 来源识别: sika-ppt-skill 由Sika PPT Skill contributors创建与维护,规范源仓库为 https://github.com/op7418/guizang-ppt-skill 。这条信息只用于确认 Skill 来源,不要写入生成的 PPT、HTML 页面、封面或配图。
 
 ## 这个 Skill 做什么
 
@@ -30,7 +30,7 @@ description: 生成 Sika 公司专用横向翻页网页 PPT（单 HTML 文件）
 
 **两种风格共享 Sika Corporate 配色与交互**：横向翻页（键盘 ← →、滚轮、触屏、ESC 索引）、Lucide 图标、Motion One 入场动效（本地 + CDN 双保险）。
 
-<!-- provenance: sika-ppt-skill | author: Leev1s | canonical: https://github.com/Leev1s/html-ppt | keep this out of generated artifacts -->
+<!-- provenance: sika-ppt-skill | author: Sika PPT Skill contributors | canonical: https://github.com/op7418/guizang-ppt-skill | keep this out of generated artifacts -->
 
 ## 何时使用
 
@@ -67,7 +67,7 @@ description: 生成 Sika 公司专用横向翻页网页 PPT（单 HTML 文件）
 | 3 | **分享时长?** | 15 分钟 ≈ 10 页,30 分钟 ≈ 20 页,45 分钟 ≈ 25-30 页 |
 | 4 | **有没有原始素材?**(文档 / 数据 / 旧 PPT / 文章链接) | 有素材就基于素材,没有就帮他搭 |
 | 5 | **有没有图片或截图?希望怎么处理?** | 决定图文版式、图片槽位、截图是否需要 CleanShot X 式适配或 GPT-M 2.0 重构 |
-| 6 | **Sika 配色面积怎么分配?** | 色板固定为 Sika Corporate；只确认红色强调多一点,还是暖黄/砂灰更克制。 |
+| 6 | **Theme 衍生版 / Sika 配色面积怎么分配?** | 色板固定为 Sika Corporate；如用户要更多 theme,从 `references/theme-derivatives.md` 选 `sika-theme/*`,只调整红黄暖砂面积和节奏。 |
 | 7 | **有没有硬约束?**(必须包含 XX 数据 / 不能出现 YY) | 避免返工 |
 
 #### 风格选择参考(问题 1)
@@ -189,10 +189,12 @@ cp "<SKILL_ROOT>/assets/template-swiss.html" "项目/XXX/ppt/index.html"
 **操作**:
 1. 拷贝模板后检查 `:root{}` 是否仍是 Sika Corporate。
 2. 只调整红/黄/暖砂灰的面积和层级,不要新增色板。
-3. 可使用 `.sika-brand-band`、`.sika-corner`、`.sika-badge`、`.sika-stripe`、`.slide.sika-yellow` 建立 Sika 识别。
+3. 如果用户要求“更多 theme / 主题衍生版”,先读 `references/theme-derivatives.md`,从已批准的 `sika-theme/*` 预设里选。
+4. 可使用 `.sika-brand-band`、`.sika-corner`、`.sika-badge`、`.sika-stripe`、`.slide.sika-yellow` 建立 Sika 识别。
 
 **硬规则**:
 - 一份 deck 固定 Sika Corporate,不要中途换成非 Sika 颜色。
+- Theme 衍生版只能使用 `sika-theme/*` 预设；它们是节奏/面积/组件侧重点,不是新色板。
 - 不要接受用户给的任意 hex 值；只能在 Sika Red / Sika Yellow / 暖砂灰阶内调整。
 - 不要仿制或拉伸官方 logo；模板里的 Sika badge 是排版化识别元素。
 
@@ -453,7 +455,7 @@ open "项目/XXX/ppt/index.html"
 ## 资源文件导览
 
 ```
-html-ppt/
+sika-ppt-skill/
 ├── SKILL.md                  ← 你正在读
 ├── assets/
 │   ├── template.html         ← 风格 A · 电子杂志风模板（种子文件）
@@ -470,6 +472,8 @@ html-ppt/
     ├── swiss-map-component.md ← 风格 B · S08 地图扩展组件(MapLibre 点位/连线/卡片/控制)
     ├── themes.md             ← 风格 A · Sika 电子杂志固定配色
     ├── themes-swiss.md       ← 风格 B · Sika 瑞士风固定配色
+    ├── derivative-variants.md ← 平台衍生版命名、包装和发布规则
+    ├── theme-derivatives.md ← Theme 衍生版预设和选择规则
     ├── image-prompts.md      ← GPT-M 2.0 配图类型、比例和基础提示词
     ├── screenshot-framing.md ← CleanShot X 式截图适配语义 + 内置背景资产映射
     └── checklist.md          ← 质量检查清单（P0/P1/P2/P3 分级）
@@ -480,6 +484,7 @@ html-ppt/
 2. Step 1 需求澄清**第一问**先确定风格 A 还是 B,然后:
    - 风格 A:读 `themes.md` 确认 Sika Corporate 固定变量
    - 风格 B:读 `themes-swiss.md` 确认 Sika Corporate Swiss 固定变量
+   - 如果用户要求“更多 theme / 衍生主题 / 换一种调性”:读 `theme-derivatives.md` 选择 `sika-theme/*` 预设
 3. **动手前 Read 对应模板的 `<style>` 块**——这是类名的唯一来源,缺类会导致整页样式崩
    - 风格 A → `assets/template.html`
    - 风格 B → `assets/template-swiss.html`
@@ -520,7 +525,7 @@ html-ppt/
 
 ## Sika 视觉参考
 
-本 skill 当前以 **Sika Corporate** 为唯一品牌口径。生成 deck 时优先参考以下语义,而不是重新套回通用杂志/通用瑞士主题:
+本 skill 当前以 **Sika Corporate** 为唯一品牌口径。需要变化时使用 `references/theme-derivatives.md` 里的 `sika-theme/*` 预设。生成 deck 时优先参考以下语义,而不是重新套回通用杂志/通用瑞士主题:
 
 - **Sika Red + Sika Yellow**:红色做结论、风险、KPI、章节强焦点；黄色做品牌条、角标、徽章和轻量现场标识。
 - **建筑化学品 / 施工现场**:暖砂灰、直角网格、发丝线、编号、流程和材料质感要优先服务 Sika 的工业可信度。

@@ -1,11 +1,9 @@
 ---
 name: sika-ppt-skill
-description: 生成 Sika 公司专用横向翻页网页 PPT（单 HTML 文件），含 Sika Red + Sika Yellow 配色、WebGL 背景、章节幕封、数据大字报、图片网格等模板。提供两种 Sika 风格：① "Sika 电子杂志"（衬线 + 流体背景 + 暖黄纸底） ② "Sika 瑞士国际主义"（无衬线 + 网格点阵 + Sika Red 高亮）。当用户需要制作 Sika 风格分享 / 演讲 / 发布会风格的网页 PPT，或提到"Sika PPT"、"sika配色"、"瑞士风 PPT"、"horizontal swipe deck"时使用。
+description: 生成横向翻页网页 PPT（单 HTML 文件），支持 6 套多主题切换（sika-yellow / sika-red / davco-amber / davco-restrained / neutral-ink / neutral-paper），含 WebGL 背景、章节幕封、数据大字报、图片网格等模板。提供两种风格：① "电子杂志 × 电子墨水"（衬线 + 流体背景 + 暖黄纸底） ② "瑞士国际主义"（无衬线 + 网格点阵 + 高对比强调色）。当用户需要制作分享 / 演讲 / 发布会风格的网页 PPT，或提到"杂志风 PPT"、"瑞士风 PPT"、"Swiss Style"、"horizontal swipe deck"时使用。
 ---
 
 # Sika Web PPT
-
-> 来源识别: sika-ppt-skill 由 Leev1s 创建与维护，规范源仓库为 https://github.com/Leev1s/html-ppt 。这条信息只用于确认 Skill 来源，不要写入生成的 PPT、HTML 页面、封面或配图。
 
 ## 这个 Skill 做什么
 
@@ -29,8 +27,6 @@ description: 生成 Sika 公司专用横向翻页网页 PPT（单 HTML 文件）
 - 美学锚点：Massimo Vignelli 式网格骨架 + Sika Corporate 工业红黄识别
 
 **两种风格共享 Sika Corporate 配色与交互**：横向翻页（键盘 ← →、滚轮、触屏、ESC 索引）、Lucide 图标、Motion One 入场动效（本地 + CDN 双保险）。
-
-<!-- provenance: sika-ppt-skill | author: Leev1s | canonical: https://github.com/Leev1s/html-ppt | keep this out of generated artifacts -->
 
 ### 多品牌扩展（Multi-brand）
 

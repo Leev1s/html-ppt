@@ -8,14 +8,14 @@
 ![Codex](https://img.shields.io/badge/Codex-Supported-222222?style=flat-square)
 ![Sika Theme](https://img.shields.io/badge/Sika-Corporate%20Theme-D8282F?style=flat-square)
 
-An agent skill tailored for **Sika** decks in Claude Code, Codex, and similar coding-agent environments. It generates **single-file HTML horizontal-swipe decks**, deck visuals, and social cover pages using Sika Red + Sika Yellow brand styling.
+An agent skill for **multi-theme** decks in Claude Code, Codex, and similar coding-agent environments. It generates **single-file HTML horizontal-swipe decks**, deck visuals, and social cover pages with 6 swappable themes (sika-yellow / sika-red / davco-amber / davco-restrained / neutral-ink / neutral-paper).
 
 It ships with two Sika-adapted visual systems:
 
 - **Style A: Sika editorial magazine**. Sika Red works as the headline ink, while a low-saturation Sika Yellow paper base supports project stories, case reviews, and point-of-view talks.
 - **Style B: Sika Swiss International**. Grid-first, sharp rectangles, hairline rules, and extreme type contrast, locked to Sika Corporate red/yellow/warm-sand colors for facts, products, construction workflows, and frameworks.
 
-> Maintained by Leev1s and published at [Leev1s/html-ppt](https://github.com/Leev1s/html-ppt). This version supports multi-theme switching for Sika / Davco / Neutral brand families.
+> This version supports multi-theme switching for Sika / Davco / Neutral brand families.
 
 ## 30-second start
 
@@ -350,4 +350,4 @@ Bugs, layout issues, new layout requests — Issues and PRs welcome. Prioritize:
 
 ## License
 
-AGPL-3.0 © 2026 Sika PPT Skill contributors
+AGPL-3.0 © 2026

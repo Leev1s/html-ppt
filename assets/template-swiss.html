@@ -183,6 +183,8 @@
     font-family:var(--sans);font-weight:900;font-style:italic;letter-spacing:-.04em;
     text-transform:uppercase;line-height:1;transform:skew(-8deg);
   }
+  /* P0-2 fix: chip 文字跨主题强制深色 */
+  .sika-badge,.sika-badge > span{color:#1A1A1A !important}
   .sika-badge > span{transform:skew(8deg)}
   .sika-stripe{position:relative;height:10px;background:var(--brand-secondary)}
   .sika-stripe::after{content:"";position:absolute;right:0;top:0;height:100%;width:32%;background:var(--accent)}
@@ -194,6 +196,10 @@
     font-size:11vw;
     line-height:.92;
     letter-spacing:-.04em;
+    max-width:calc(100vw - 80px);
+    padding:0 40px;
+    box-sizing:border-box;
+    overflow-wrap:break-word;
   }
   .h-hero-zh{
     font-family:var(--sans),var(--sans-zh);
@@ -268,6 +274,9 @@
     font-size:max(14px,.88vw);letter-spacing:.16em;text-transform:uppercase;
     opacity:.65;
   }
+  /* P0-3 fix: meta-row/kicker 跨主题稳定深色，避免品牌色叠白底对比度<2:1 */
+  .slide.light .meta-row,.slide.light .kicker,.slide.light .t-meta{color:#1F1F1F !important;opacity:.78}
+  .slide.dark .meta-row,.slide.dark .kicker,.slide.dark .t-meta{color:rgba(255,255,255,.85) !important;opacity:.9}
   .meta-row span:not(.dot){display:inline-block}
   .meta-row .dot{
     display:inline-block;width:4px;height:4px;border-radius:50%;
@@ -971,7 +980,9 @@
     font-family:var(--sans),var(--sans-zh);
     font-size:18px;font-weight:400;
     color:var(--text-primary);line-height:1.5;
-    letter-spacing:-.005em
+    letter-spacing:-.005em;
+    word-break:keep-all;
+    overflow-wrap:anywhere;
   }
 
   /* body emphasis — 强调正文 */
@@ -979,7 +990,9 @@
     font-family:var(--sans),var(--sans-zh);
     font-size:18px;font-weight:600;       /* SemiBold per Carbon */
     color:var(--text-primary);line-height:1.5;
-    letter-spacing:-.005em
+    letter-spacing:-.005em;
+    word-break:keep-all;
+    overflow-wrap:anywhere;
   }
 
   /* productive heading — section title within slide */

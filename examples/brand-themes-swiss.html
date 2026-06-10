@@ -1530,6 +1530,38 @@ function go(n){
   lock=true;setTimeout(()=>lock=false,700);
 }
 
+/* =============== P0-1 hash routing: support #p1, #p2, ... direct links =============== */
+(function(){
+  function syncHashFromIdx(){
+    const target = '#p' + (idx + 1);
+    if (location.hash !== target) {
+      try { history.replaceState({}, '', location.pathname + location.search + target); } catch(e) {}
+    }
+  }
+  if (typeof go === 'function') {
+    const _origGo = go;
+    window.go = function(n){
+      const r = _origGo.apply(this, arguments);
+      syncHashFromIdx();
+      return r;
+    };
+  }
+  const _m = location.hash.match(/^#p(\d+)$/);
+  if (_m) {
+    const n = Math.max(0, Math.min(total - 1, parseInt(_m[1], 10) - 1));
+    // Defer until the 700ms lock from initial go(0) releases
+    setTimeout(() => { if (n !== idx) go(n); else syncHashFromIdx(); }, 800);
+  } else {
+    syncHashFromIdx();
+  }
+  window.addEventListener('hashchange', function(){
+    const mm = location.hash.match(/^#p(\d+)$/);
+    if (!mm) return;
+    const n = Math.max(0, Math.min(total - 1, parseInt(mm[1], 10) - 1));
+    if (n !== idx) go(n);
+  });
+})();
+
 /* =============== ESC 索引视图 =============== */
 let overviewOn=false;
 const ov=document.createElement('div');

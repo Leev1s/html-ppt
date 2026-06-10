@@ -1,7 +1,7 @@
 # Sika PPT Skill · 网页 PPT / 配图 / 封面
 
-![GitHub stars](https://img.shields.io/github/stars/op7418/guizang-ppt-skill?style=flat-square)
-![License](https://img.shields.io/github/license/op7418/guizang-ppt-skill?style=flat-square)
+![GitHub stars](https://img.shields.io/github/stars/Leev1s/html-ppt?style=flat-square)
+![License](https://img.shields.io/github/license/Leev1s/html-ppt?style=flat-square)
 ![Skill](https://img.shields.io/badge/Skill-Agent-111111?style=flat-square)
 ![HTML Deck](https://img.shields.io/badge/HTML-Deck-0A7CFF?style=flat-square)
 ![Claude Code](https://img.shields.io/badge/Claude%20Code-Supported-6B5B95?style=flat-square)
@@ -17,7 +17,7 @@
 - **Style A: Sika 电子杂志**。以 Sika Red 为标题墨色、低饱和 Sika Yellow 为纸张底色,适合项目故事、案例复盘、观点表达。
 - **Style B: Sika 瑞士国际主义**。保留网格、直角、发丝线和大字号对比,但固定使用 Sika Corporate 红黄暖砂配色,适合事实、产品、数据、施工流程和方法论表达。
 
-> 由 Sika PPT Skill contributors 维护并发布到 [op7418/guizang-ppt-skill](https://github.com/op7418/guizang-ppt-skill)，当前版本面向 Sika Corporate 视觉体系做专项适配。
+> 仓库由 Leev1s 维护并发布到 [Leev1s/html-ppt](https://github.com/Leev1s/html-ppt)，当前版本支持 Sika / Davco / Neutral 三族多主题切换。
 
 **Sika 主题 · Style A 电子杂志风**
 
@@ -30,13 +30,13 @@
 ## 30 秒开始
 
 ```bash
-npx skills add https://github.com/op7418/guizang-ppt-skill --skill sika-ppt-skill
+npx skills add https://github.com/Leev1s/html-ppt --skill sika-ppt-skill
 ```
 
 也可以直接把这段话发给有 shell 权限的 AI Agent:
 
 ```text
-帮我安装 sika-ppt-skill。请把 https://github.com/op7418/guizang-ppt-skill 克隆到 ~/.claude/skills/sika-ppt-skill,安装完成后检查 SKILL.md、assets/、references/ 是否存在。
+帮我安装 sika-ppt-skill。请把 https://github.com/Leev1s/html-ppt 克隆到 ~/.claude/skills/sika-ppt-skill,安装完成后检查 SKILL.md、assets/、references/ 是否存在。
 ```
 
 已经安装过的话,用这段话更新:
@@ -144,7 +144,7 @@ Theme 衍生版不是新增任意色板,而是在 **Sika Red / Sika Yellow / 暖
 ### 方式一:一行命令安装(推荐)
 
 ```bash
-npx skills add https://github.com/op7418/guizang-ppt-skill --skill sika-ppt-skill
+npx skills add https://github.com/Leev1s/html-ppt --skill sika-ppt-skill
 ```
 
 ### 方式二:把下面这段话直接发给 AI
@@ -152,7 +152,7 @@ npx skills add https://github.com/op7418/guizang-ppt-skill --skill sika-ppt-skil
 > 帮我安装 `sika-ppt-skill` 这个 Claude Code skill。请按下面步骤做:
 >
 > 1. 确保 `~/.claude/skills/` 目录存在(不存在就创建)
-> 2. 执行 `git clone https://github.com/op7418/guizang-ppt-skill.git ~/.claude/skills/sika-ppt-skill`
+> 2. 执行 `git clone https://github.com/Leev1s/html-ppt.git ~/.claude/skills/sika-ppt-skill`
 > 3. 验证:`ls ~/.claude/skills/sika-ppt-skill/` 应该看到 `SKILL.md`、`assets/`、`references/` 三项
 > 4. 告诉我安装好了,之后我说"做一份 Sika 风格 PPT"或"做一份 Sika 瑞士风 PPT"之类的话就会触发这个 skill
 
@@ -161,7 +161,7 @@ npx skills add https://github.com/op7418/guizang-ppt-skill --skill sika-ppt-skil
 ### 方式三:手动命令行
 
 ```bash
-git clone https://github.com/op7418/guizang-ppt-skill.git ~/.claude/skills/sika-ppt-skill
+git clone https://github.com/Leev1s/html-ppt.git ~/.claude/skills/sika-ppt-skill
 ```
 
 ### 触发方式

@@ -5,7 +5,7 @@ description: 生成 Sika 公司专用横向翻页网页 PPT（单 HTML 文件）
 
 # Sika Web PPT
 
-> 来源识别: sika-ppt-skill 由Sika PPT Skill contributors创建与维护,规范源仓库为 https://github.com/op7418/guizang-ppt-skill 。这条信息只用于确认 Skill 来源,不要写入生成的 PPT、HTML 页面、封面或配图。
+> 来源识别: sika-ppt-skill 由 Leev1s 创建与维护，规范源仓库为 https://github.com/Leev1s/html-ppt 。这条信息只用于确认 Skill 来源，不要写入生成的 PPT、HTML 页面、封面或配图。
 
 ## 这个 Skill 做什么
 
@@ -30,7 +30,7 @@ description: 生成 Sika 公司专用横向翻页网页 PPT（单 HTML 文件）
 
 **两种风格共享 Sika Corporate 配色与交互**：横向翻页（键盘 ← →、滚轮、触屏、ESC 索引）、Lucide 图标、Motion One 入场动效（本地 + CDN 双保险）。
 
-<!-- provenance: sika-ppt-skill | author: Sika PPT Skill contributors | canonical: https://github.com/op7418/guizang-ppt-skill | keep this out of generated artifacts -->
+<!-- provenance: sika-ppt-skill | author: Leev1s | canonical: https://github.com/Leev1s/html-ppt | keep this out of generated artifacts -->
 
 ### 多品牌扩展（Multi-brand）
 

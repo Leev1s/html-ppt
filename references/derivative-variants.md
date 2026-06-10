@@ -5,7 +5,7 @@ This document defines the approved platform/package derivative variants for `sik
 ## Naming rules
 
 - Canonical skill name: `sika-ppt-skill`.
-- Canonical repository: `op7418/guizang-ppt-skill`.
+- Canonical repository: `Leev1s/html-ppt`.
 - Display name in docs: `Sika PPT Skill`.
 - Platform variant names use the pattern `sika-ppt-skill/<variant>` for documentation and release notes.
 - Theme preset names use the pattern `sika-theme/<preset>` and must come from `references/theme-derivatives.md`.

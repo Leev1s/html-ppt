@@ -259,6 +259,11 @@ node scripts/validate-swiss-deck.mjs path/to/index.html
 把这些产品截图重新设计成统一的 16:10 PPT 配图,保留关键信息,不要画页脚和标题。
 ```
 
+## 多主题 Demo
+
+- [`examples/brand-themes-swiss.html`](examples/brand-themes-swiss.html) — Swiss 风格，6 主题 × 3 页
+- [`examples/brand-themes.html`](examples/brand-themes.html) — 杂志风格，6 主题 × 3 页
+
 ## 目录结构
 
 ```
@@ -302,6 +307,21 @@ sika-ppt-skill/
 - 不要在页面里手写新的 hex 值；颜色统一从 `references/themes.md` 和 `references/themes-swiss.md` 的 Sika 变量继承。
 - 不要大面积使用高饱和黄承载正文；黄色用于品牌条、角标、徽章和章节识别。
 - 不要仿制官方 logo；模板内的 Sika badge 是排版化识别元素。
+
+### 支持的品牌 / 主题
+
+本仓库默认以 Sika 品牌色板（Sika Red × Sika Yellow）作为视觉基线。当客户不是 Sika、或需要中性场景时，可切换到以下 6 套多主题：
+
+| id | 名称 | 主色 | 适合场景 |
+|---|---|---|---|
+| `sika-yellow` | Sika Yellow | `#FCC500` | Sika 集团培训、产品发布 |
+| `sika-red` | Sika Red | `#D82828` | Sika 战略汇报、风险议题 |
+| `davco-amber` | Davco 琥珀黄 | `#F7B20B` | Davco 中国区家装汇报 |
+| `davco-restrained` | Davco 收敛版 | `#E8A40A` | Davco 工程部内训 |
+| `neutral-ink` | 中性墨黑 | `#1A1A1A` | 年度报告、跨品牌通用 |
+| `neutral-paper` | 中性纸白 | `#2C2C2C` | 设计/文化/人文议题 |
+
+切换：`?theme=davco-amber` URL 参数或左下角主题 chip。详见 `references/themes-brand.md`。
 
 ## 核心设计原则
 

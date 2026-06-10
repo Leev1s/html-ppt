@@ -32,6 +32,18 @@ description: 生成 Sika 公司专用横向翻页网页 PPT（单 HTML 文件）
 
 <!-- provenance: sika-ppt-skill | author: Sika PPT Skill contributors | canonical: https://github.com/op7418/guizang-ppt-skill | keep this out of generated artifacts -->
 
+### 多品牌扩展（Multi-brand）
+
+当客户不是 Sika 集团、或者一份 deck 需要在多个品牌间切换时，参考：
+
+- `references/themes-brand.md` — 6 套多主题配色（`sika-yellow` / `sika-red` / `davco-amber` / `davco-restrained` / `neutral-ink` / `neutral-paper`）
+- `references/fonts-brand.md` — 配套字体方案
+- `examples/brand-themes-swiss.html` — Swiss 风格 18 页 demo
+- `examples/brand-themes.html` — 杂志风格 18 页 demo
+
+切换方式：`?theme=<id>` URL 参数 或 `document.documentElement.setAttribute('data-theme', '<id>')`。
+默认未指定时仍是 Sika Corporate，不破坏现有 deck。
+
 ## 何时使用
 
 **合适的场景**：
@@ -463,7 +475,11 @@ sika-ppt-skill/
 │   ├── screenshot-backgrounds/ ← 截图美化内置背景(WebP):优先按 Sika 红黄暖砂做程序化适配
 │   └── motion.min.js         ← Motion One 本地副本（离线兜底,约 64KB,共用）
 ├── scripts/
-│   └── validate-swiss-deck.mjs ← 风格 B 静态校验:登记版式、图片槽位、SVG 文本、标题对齐
+│   ├── validate-swiss-deck.mjs ← 风格 B 静态校验:登记版式、图片槽位、SVG 文本、标题对齐
+│   └── validate-brand-deck.mjs ← 多主题 deck 校验器
+├── examples/
+│   ├── brand-themes-swiss.html ← Swiss 风格 18 页多主题 demo
+│   └── brand-themes.html ← 杂志风格 18 页多主题 demo
 └── references/
     ├── components.md         ← 组件手册（字体、色、网格、图标、callout、stat、pipeline、动效... 风格 A 适用）
     ├── layouts.md            ← 风格 A · 10 种页面布局骨架（可直接粘贴,含动效标记）
@@ -476,6 +492,8 @@ sika-ppt-skill/
     ├── theme-derivatives.md ← Theme 衍生版预设和选择规则
     ├── image-prompts.md      ← GPT-M 2.0 配图类型、比例和基础提示词
     ├── screenshot-framing.md ← CleanShot X 式截图适配语义 + 内置背景资产映射
+    ├── themes-brand.md       ← 多品牌主题色板（6 套 [data-theme] 切换）
+    ├── fonts-brand.md        ← 多主题字体方案
     └── checklist.md          ← 质量检查清单（P0/P1/P2/P3 分级）
 ```
 

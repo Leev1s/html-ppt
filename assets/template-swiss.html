@@ -20,11 +20,8 @@
     --grey-2:#dfcda8;         /* 中性砂浆线 */
     --grey-3:#755f42;         /* 辅助文字 */
     --accent:#D8282F;         /* Sika Red · Pantone 1795 C */
-    --accent-rgb:216,40,47;
     --accent-on:#ffffff;      /* red 上的反色文字 */
-    --accent-bright:#F5B325;  /* Sika Yellow · Pantone 7409 C */
     --brand-secondary:#F5B325;
-    --brand-secondary-rgb:245,179,37;
 
     /* ============ Carbon 文本角色 token (role-based,代替 opacity) ============
        亮底:  primary 主文 / secondary 次文 / helper 辅助 / placeholder 占位
@@ -32,10 +29,7 @@
     --text-primary:var(--ink);        /* = ink, 100% */
     --text-secondary:#5b4635;      /* warm gray 70 for Sika */
     --text-helper:var(--grey-3);         /* warm gray 60 for Sika */
-    --text-placeholder:#a3a3a3;    /* gray 40 */
-    --text-on-color:#ffffff;       /* accent/dark 反色 */
     --border-subtle:#eadbb9;       /* warm hairline for Sika */
-    --border-strong:#bfaa83;       /* warm strong line for Sika */
 
     /* ============ 字体(跨主题固定) ============ */
     --sans:"Inter","Helvetica Neue","Helvetica","Arial","Segoe UI Variable","Segoe UI",system-ui,-apple-system,sans-serif;
@@ -45,31 +39,16 @@
     /* ============ Carbon 2x Grid 间距模数 (基础 8px) ============
        参考: https://carbondesignsystem.com/elements/2x-grid/overview/
        任何 padding/gap/margin 优先用这套 token,确保 8px 基线对齐 */
-    --sp-3:8px;     /* 02 token */
     --sp-4:12px;    /* 03 */
     --sp-5:16px;    /* 04 */
     --sp-6:24px;    /* 05 */
     --sp-7:32px;    /* 06 */
-    --sp-8:40px;    /* 07 */
     --sp-9:48px;    /* 08 */
-    --sp-10:64px;   /* 09 */
-    --sp-11:80px;   /* 10 */
-    --sp-12:96px;   /* 11 */
-    --sp-13:160px;  /* 12 */
 
     /* ============ Carbon Motion tokens ============
        https://carbondesignsystem.com/guidelines/motion/overview/
        两套体系:productive (功能) 短 + 锐 / expressive (叙事) 长 + 软 */
-    --ease-prod:cubic-bezier(.2,0,.38,.9);          /* productive standard */
-    --ease-exp:cubic-bezier(.4,.14,.3,1);            /* expressive standard */
-    --ease-entry-prod:cubic-bezier(0,0,.38,.9);     /* productive entrance */
-    --ease-entry-exp:cubic-bezier(0,0,.3,1);         /* expressive entrance */
-    --dur-fast-1:.07s;   /* 70ms */
-    --dur-fast-2:.11s;   /* 110ms */
-    --dur-mod-1:.15s;    /* 150ms */
-    --dur-mod-2:.24s;    /* 240ms */
-    --dur-slow-1:.4s;    /* 400ms */
-    --dur-slow-2:.7s;    /* 700ms */
+    /* Carbon Motion tokens removed in cleanup (zero references, 0 var() usages) */
 
     /* 底部分页组件安全区: 主内容最低处不要进入这条区域 */
     --nav-safe-bottom:8vh;
@@ -1212,7 +1191,88 @@
     .grid-2-7-5,.grid-2-6-6,.grid-2-8-4,.grid-2-4-8{grid-template-columns:1fr}
     .grid-12{grid-template-columns:repeat(6,1fr)}
   }
+  /* ============================
+     Multi-theme palette (6 themes) — Swiss
+     激活方式:URL ?theme=<id> 或 <html data-theme="<id>">
+     默认仍是 Sika Corporate Swiss
+     ============================ */
+  :root[data-theme="sika-yellow"]{
+    --ink:#1f1713;--ink-rgb:31,23,19;
+    --paper:#fff8e6;--paper-rgb:255,248,230;--paper-tint:#f6ead1;
+    --accent:#FCC500;--accent-rgb:252,197,0;--accent-on:#3A2E0E;
+    --grey-1:#f5f5f5;--grey-2:#e5e5e5;
+    --sans:"Barlow Condensed","Inter","Helvetica Neue","Helvetica",sans-serif;
+  }
+  :root[data-theme="sika-red"]{
+    --ink:#1f1713;--ink-rgb:31,23,19;
+    --paper:#fff8e6;--paper-rgb:255,248,230;--paper-tint:#f6ead1;
+    --accent:#D82828;--accent-rgb:216,40,40;
+    --grey-1:#f5f5f5;--grey-2:#e5e5e5;
+    --sans:"Space Grotesk","Inter","Helvetica Neue",sans-serif;
+  }
+  :root[data-theme="davco-amber"]{
+    --ink:#1A1A1A;--ink-rgb:26,26,26;
+    --paper:#FAFAFA;--paper-rgb:250,250,250;--paper-tint:#F7F7F7;
+    --accent:#F7B20B;--accent-rgb:247,178,11;--accent-on:#3A2806;
+    --grey-1:#f0f0f0;--grey-2:#e0e0e0;
+    --sans:"DM Sans","Inter","Helvetica Neue",sans-serif;
+    --sans-zh:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  }
+  :root[data-theme="davco-restrained"]{
+    --ink:#1F2933;--ink-rgb:31,41,51;
+    --paper:#FAFAFA;--paper-rgb:250,250,250;--paper-tint:#F0F2F4;
+    --accent:#E8A40A;--accent-rgb:232,164,10;--accent-on:#2E2208;
+    --grey-1:#eef1f4;--grey-2:#dce2e7;
+    --sans:"IBM Plex Sans","Inter","Helvetica Neue",sans-serif;
+    --sans-zh:"Noto Sans SC","PingFang SC",sans-serif;
+  }
+  :root[data-theme="neutral-ink"]{
+    --ink:#0E0E0E;--ink-rgb:14,14,14;
+    --paper:#FFFFFF;--paper-rgb:255,255,255;--paper-tint:#F4F2EC;
+    --accent:#C9A961;--accent-rgb:201,169,97;--accent-on:#2A2418;
+    --grey-1:#f5f5f5;--grey-2:#e2dfd6;
+    --sans:"Playfair Display","Fraunces",Georgia,serif;
+    --sans-zh:"Noto Serif SC",serif;
+  }
+  :root[data-theme="neutral-paper"]{
+    --ink:#2C2C2C;--ink-rgb:44,44,44;
+    --paper:#FAF8F3;--paper-rgb:250,248,243;--paper-tint:#F0EBE0;
+    --accent:#B86F4A;--accent-rgb:184,111,74;
+    --grey-1:#f0ebe0;--grey-2:#e2dccb;
+    --sans:"Fraunces","Lora","EB Garamond",Georgia,serif;
+    --sans-zh:"Noto Serif SC",serif;
+  }
+
+  /* ============================
+     Demo-only theme polish (Layer 2 visual fixes)
+     ============================ */
+
+  /* P1·1: davco-restrained 与 davco-amber 拉开冷暖层次 */
+  :root[data-theme="davco-restrained"] {
+    --paper: #EEF1F4;
+    --paper-rgb: 238,241,244;
+    --paper-tint: #E4E8ED;
+    --grey-1: #E8EBEF;
+  }
+
+  /* P1·2: sika-red accent 降饱和, 拉离「广告红」 */
+  :root[data-theme="sika-red"] {
+    --accent: #C8252C;
+    --accent-rgb: 200, 37, 44;
+  }
+
+  /* P2: sika-yellow 装饰三角在黄底上对比度过低 → 改用 sika-red 加深 */
+  :root[data-theme="sika-yellow"] .sika-corner,
+  :root[data-theme="sika-yellow"] .sika-corner::after {
+    background: #C8252C;
+    opacity: 1;
+  }
 </style>
+
+<!-- multi-theme font preset: 6 themes -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&family=Space+Mono:wght@400;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600&family=Lora:wght@400;500;600;700&family=EB+Garamond:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700;900&family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body class="canvas-mode">
 <script>

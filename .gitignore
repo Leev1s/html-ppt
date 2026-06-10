@@ -1,2 +1,7 @@
 .DS_Store
 *.backup
+
+# Local-only assets (not committed)
+.previews/
+previews/
+.research/

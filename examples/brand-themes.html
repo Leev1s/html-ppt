@@ -1,18 +1,14 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="sika-yellow">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>[必填] 替换为 PPT 标题 · Deck Title</title>
+<title>Brand Themes Magazine · 6 Themes × 3 Pages Demo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@300;400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    /* ============ 主题色(默认:🟨 Sika Corporate) ============
-       Sika 固定主题:变量来源见 references/themes.md
-       如需微调,只调整 Sika Red / Sika Yellow / 暖砂灰的面积和层级
-       其他地方散落的 rgba() 都走 var(--ink-rgb) / var(--paper-rgb),无需逐处改 */
     --ink:#D8282F;
     --ink-rgb:216,40,47;
     --paper:#fff8e6;
@@ -21,7 +17,6 @@
     --ink-tint:#a92028;
     --brand-secondary:#F5B325;
 
-    /* ============ 字体(跨主题固定) ============ */
     --mono:"IBM Plex Mono",ui-monospace,monospace;
     --serif-en:"Playfair Display","Source Serif 4",Georgia,serif;
     --serif-body-en:"Source Serif 4",Georgia,serif;
@@ -31,7 +26,6 @@
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);color:var(--paper);font-family:var(--sans-zh);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 
-  /* ============ WebGL 双背景 ============ */
   canvas.bg{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;display:block;transition:opacity 1.2s ease}
   canvas#bg-light{opacity:0}
   canvas#bg-dark{opacity:1}
@@ -39,26 +33,20 @@
   body.light-bg canvas#bg-dark{opacity:0}
   body.low-power canvas.bg{display:none!important}
 
-  /* ============ Deck 容器 + 翻页 ============ */
-  /* width: NSLIDES * 100vw，会在 JS 里动态矫正 */
   #deck{position:fixed;inset:0;width:10000vw;height:100vh;display:flex;flex-wrap:nowrap;transition:transform .9s cubic-bezier(.77,0,.175,1);z-index:10;will-change:transform}
   .slide{width:100vw;height:100vh;flex:0 0 100vw;position:relative;padding:6vh 6vw 10vh 6vw;display:flex;flex-direction:column;overflow:hidden}
   .slide.light{color:var(--ink);background:var(--paper)}
   .slide.dark{color:var(--paper);background:var(--ink)}
 
-  /* 默认页：遮罩较厚，保证文字可读 */
   .slide::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;transition:background .7s ease}
   .slide.light::before{background:rgba(var(--paper-rgb),.78);backdrop-filter:blur(3px)}
   .slide.dark::before{background:rgba(var(--ink-rgb),.78);backdrop-filter:blur(3px)}
-  /* Hero 页：遮罩大幅降低，让 WebGL 背景明显透出 */
   .slide.hero.light::before{background:rgba(var(--paper-rgb),.16);backdrop-filter:none}
   .slide.hero.dark::before{background:rgba(var(--ink-rgb),.12);backdrop-filter:none}
-  /* Hero 页顶底微弱渐隐，保证 chrome/foot 区域可读 */
   .slide.hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none}
   .slide.hero.light::after{background:linear-gradient(180deg,rgba(var(--paper-rgb),.28) 0%,rgba(var(--paper-rgb),0) 14%,rgba(var(--paper-rgb),0) 86%,rgba(var(--paper-rgb),.28) 100%)}
   .slide.hero.dark::after{background:linear-gradient(180deg,rgba(var(--ink-rgb),.32) 0%,rgba(var(--ink-rgb),0) 14%,rgba(var(--ink-rgb),0) 86%,rgba(var(--ink-rgb),.32) 100%)}
 
-  /* ============ Magazine chrome：顶部 meta + 底部 foot ============ */
   .chrome{display:flex;justify-content:space-between;align-items:flex-start;font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;opacity:.7}
   .chrome .left,.chrome .right{display:flex;gap:2.4em;align-items:center}
   .chrome .sep{width:40px;height:1px;background:currentColor;opacity:.4}
@@ -67,8 +55,6 @@
 
   .tag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;padding:6px 14px;border:1px solid currentColor;opacity:.85}
 
-  /* ============ Sika 企业风辅助元素 ============
-     Sika Red + Sika Yellow 是两套模板的固定品牌配色；这些元素只做工业识别，不仿制完整商标。 */
   .sika-brand-band{position:absolute;left:0;top:0;width:100%;height:14px;background:var(--brand-secondary);z-index:2;pointer-events:none}
   .sika-brand-band::after{content:"";position:absolute;right:0;top:0;height:100%;width:28%;background:var(--ink)}
   .sika-corner{position:absolute;right:0;top:0;width:min(18vw,230px);height:min(18vw,230px);background:var(--brand-secondary);clip-path:polygon(100% 0,100% 100%,0 0);z-index:-1;pointer-events:none;opacity:.96}
@@ -82,11 +68,6 @@
   .rule{width:100%;height:1px;background:currentColor;opacity:.25;margin:3vh 0}
   .rule.v{width:1px;height:100%;margin:0}
 
-  /* ============ 字体规则 ============
-     · 衬线（Noto Serif SC / Playfair）：大标题、重点金句、数字
-     · 非衬线（Noto Sans SC）：正文描述、body、补充说明
-     · 等宽（IBM Plex Mono）：kicker、meta 小标签、foot 右侧
-  */
   .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.3em;text-transform:uppercase;opacity:.6;margin-bottom:2.6vh}
   .display{font-family:var(--serif-en);font-weight:700;font-size:11vw;line-height:.92;letter-spacing:-.025em}
   .display-zh{font-family:var(--serif-zh);font-weight:700;font-size:7.8vw;line-height:1.04;letter-spacing:-.005em}
@@ -103,7 +84,6 @@
   em{font-style:italic;font-family:var(--serif-en)}
   .en{font-family:var(--serif-en);font-style:italic;font-weight:500}
 
-  /* ============ 布局工具 ============ */
   .col{display:flex;flex-direction:column;gap:2.4vh}
   .row{display:flex;align-items:center;gap:3vw}
   .grid-6{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:4vw 6vw;flex:1;align-content:center;padding:2vh 0}
@@ -118,54 +98,46 @@
   .bottom-right{position:absolute;right:6vw;bottom:9vh;max-width:50vw;text-align:right}
   .top-right{position:absolute;right:6vw;top:6vh;text-align:right}
 
-  /* ============ Stat（数字矩阵） ============ */
   .stat{display:flex;flex-direction:column;gap:1vh;align-items:flex-start}
   .stat .n{font-family:var(--serif-en);font-weight:800;font-size:8vw;line-height:.88;letter-spacing:-.03em;font-feature-settings:"tnum"}
   .stat .l{font-family:var(--sans-zh);font-size:max(13px,1.05vw);opacity:.7;margin-top:1vh;font-weight:400;line-height:1.5}
   .stat .m{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.5;margin-bottom:.2vh}
 
-  /* ============ Callout（引用框） ============ */
   .callout{padding:3vh 2.4vw;border-left:3px solid currentColor;position:relative;font-family:var(--serif-zh);font-size:max(15px,1.2vw);line-height:1.55;opacity:.92}
   .slide.light .callout{background:rgba(var(--ink-rgb),.05)}
   .slide.dark .callout{background:rgba(var(--paper-rgb),.06)}
   .callout .cite{display:block;margin-top:1.6vh;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.6}
   .callout .q-big{font-family:var(--serif-zh);font-weight:600;font-size:max(17px,1.6vw);line-height:1.42}
 
-  /* ============ Platform（平台卡） ============ */
   .plat{display:flex;flex-direction:column;justify-content:flex-end;padding:2vh 0;border-top:1px solid currentColor;border-color:rgba(127,127,127,.35)}
   .plat .name{font-family:var(--serif-zh);font-weight:700;font-size:1.8vw;margin-bottom:.6vh}
   .plat .nb{font-family:var(--serif-en);font-weight:700;font-size:3.2vw;letter-spacing:-.02em;line-height:1;font-feature-settings:"tnum"}
   .plat .sub{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.55;margin-top:.6vh}
   .plat .fill{font-family:var(--sans-zh);font-weight:300;font-size:2.4vw;opacity:.28;letter-spacing:-.01em;line-height:1}
 
-  /* ============ Rowline（表格行） ============ */
   .rowline{display:grid;grid-template-columns:1fr 2fr 1fr;gap:2vw;padding:2.2vh 0;border-top:1px solid currentColor;align-items:center;border-color:rgba(127,127,127,.25)}
   .rowline:last-child{border-bottom:1px solid currentColor;border-color:rgba(127,127,127,.25)}
   .rowline .k{font-family:var(--serif-zh);font-weight:700;font-size:1.7vw}
   .rowline .v{font-family:var(--sans-zh);font-weight:400;font-size:max(14px,1.2vw);opacity:.85;line-height:1.55}
   .rowline .m{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.6;justify-self:end}
 
-  /* ============ Pillar（支柱卡片） ============ */
   .pillar{display:flex;flex-direction:column;gap:1.8vh}
   .pillar .ic{font-family:var(--serif-en);font-style:italic;font-size:2.6vw;opacity:.45;font-weight:400}
   .pillar .ic svg{width:2.8vw;height:2.8vw;stroke-width:1.2;opacity:.7}
   .pillar .t{font-family:var(--serif-zh);font-weight:700;font-size:2.4vw;line-height:1.1}
   .pillar .d{font-family:var(--sans-zh);font-weight:400;font-size:max(14px,1.1vw);opacity:.76;line-height:1.6}
 
-  /* ============ Signature / Highlight ============ */
   .sign{font-family:var(--serif-en);font-style:italic;font-weight:500;font-size:2vw;opacity:.7}
   .hi{position:relative;display:inline}
   .slide.dark .hi::after{content:"";position:absolute;left:-.1em;right:-.1em;bottom:-.05em;height:.28em;background:rgba(var(--paper-rgb),.15);z-index:-1}
   .slide.light .hi::after{content:"";position:absolute;left:-.1em;right:-.1em;bottom:-.05em;height:.28em;background:rgba(var(--ink-rgb),.08);z-index:-1}
 
-  /* ============ Icons（Lucide via CDN） ============ */
   .ico{width:1em;height:1em;display:inline-block;vertical-align:-.12em;stroke:currentColor;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
   .ico-lg,.ico-md,.ico-sm{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
   .ico-lg{width:2.6vw;height:2.6vw;stroke-width:1.2;display:inline-block}
   .ico-md{width:1.8vw;height:1.8vw;stroke-width:1.3;display:inline-block;vertical-align:-.4em}
   .ico-sm{width:1.1vw;height:1.1vw;stroke-width:1.4;display:inline-block;vertical-align:-.15em;opacity:.7}
 
-  /* ============ 图片占位（虚线框，提示设计师位置） ============ */
   .img-slot{border:1.5px dashed rgba(127,127,127,.4);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1vh;padding:2vh 2vw;font-family:var(--mono);font-size:10px;letter-spacing:.28em;text-transform:uppercase;opacity:.55;position:relative;aspect-ratio:16/9;width:100%;max-height:56vh;margin-inline:auto;box-sizing:border-box}
   .img-slot::before{content:"";position:absolute;inset:8px;border:1px solid currentColor;opacity:.2}
   .img-slot .plus{font-size:2vw;font-weight:300;opacity:.5;letter-spacing:0}
@@ -174,10 +146,6 @@
   .img-slot.r-3x2{aspect-ratio:3/2}
   .img-slot.r-1x1{aspect-ratio:1/1}
 
-  /* ============ 图片实填框（关键：固定高度 + 只裁底部） ============
-     重要约束：高度用内联 height:Nvh 精确控制，不要用 aspect-ratio（会撑破布局）
-     object-position:top center 保证严禁裁剪顶部和左右，只裁剪底部
-  */
   .frame-img{overflow:hidden;position:relative;background:rgba(0,0,0,.04);box-sizing:border-box;width:100%;border-radius:4px}
   .slide.dark .frame-img{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.12)}
   .frame-img > img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
@@ -200,7 +168,6 @@
   figure.tile{display:flex;flex-direction:column;margin:0;min-width:0}
   figure.tile > .frame-img{flex:0 0 auto}
 
-  /* ============ 导航 ============ */
   #nav{position:fixed;left:50%;bottom:2.6vh;transform:translateX(-50%);z-index:30;display:flex;gap:10px;padding:8px 14px;border-radius:999px;background:rgba(0,0,0,.18);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
   #nav .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:all .3s ease;border:0;padding:0}
   #nav .dot:hover{background:rgba(255,255,255,.5);transform:scale(1.15)}
@@ -212,22 +179,13 @@
   body.low-power #hint{opacity:.72;color:var(--paper);mix-blend-mode:normal}
   body.light-bg.low-power #hint{color:var(--ink)}
 
-  /* ============================================================
-     ============ LAYOUTS API · 面向 agent 的类（v2）============
-     所有 layouts.md 中的骨架都基于下面这套命名。
-     如果你在 layouts.md 里看到某个类，它必须在下面有定义。
-     ============================================================ */
-
-  /* ---------- .frame：每页主内容容器 ---------- */
   .frame{flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden}
-  /* 当 .frame 同时加了 grid 类时，grid 的 display:grid 覆盖 flex */
   .frame.grid-2-7-5,
   .frame.grid-2-6-6,
   .frame.grid-2-8-4,
   .frame.grid-3-3,
   .frame.grid-6{display:grid}
 
-  /* ---------- 标题层级（API 名称，衬线为主） ---------- */
   .h-hero{
     font-family:var(--serif-zh);
     font-weight:900;
@@ -256,19 +214,8 @@
     font-size:2.3vw;
     line-height:1.3;
   }
-  /* 英文标题专用（Playfair 衬线） */
   .h-hero-en,.h-xl-en{font-family:var(--serif-en);letter-spacing:-.025em}
 
-  /* ---------- lead 引语 ---------- */
-  .lead{
-    font-family:var(--serif-zh);
-    font-weight:400;
-    font-size:1.75vw;
-    line-height:1.5;
-    opacity:.86;
-  }
-
-  /* ---------- meta-row 底部元数据 ---------- */
   .meta-row{
     display:flex;
     gap:1.2em;
@@ -281,7 +228,6 @@
     opacity:.6;
   }
 
-  /* ---------- stat-card（数据大字报用） ---------- */
   .stat-card{
     display:flex;
     flex-direction:column;
@@ -323,12 +269,9 @@
     opacity:.72;
     margin-top:.6vh;
   }
-  /* 当 stat-card 用于 grid-4（2x2），数字适度放大；若页面有标题+引文在上方，可内联 style 覆盖为更小值 */
   .grid-4 .stat-card .stat-nb{font-size:5vw}
-  /* 当只有 3 个，字也可以稍大 */
   .grid-3 .stat-card .stat-nb{font-size:6.8vw}
 
-  /* ---------- pipeline（流水线） ---------- */
   .pipeline-section{
     margin-top:4.4vh;
     padding-top:2.8vh;
@@ -385,8 +328,6 @@
     opacity:.72;
   }
 
-  /* ---------- 网格（layouts.md 所用） ---------- */
-  /* 这些类独立挂到任何容器上都能生效，不依赖 .frame 复合选择器 */
   .grid-2-7-5{display:grid;grid-template-columns:7fr 5fr;gap:3vw 4vh;align-items:start}
   .grid-2-6-6{display:grid;grid-template-columns:1fr 1fr;gap:3vw 4vh;align-items:start}
   .grid-2-8-4{display:grid;grid-template-columns:8fr 4fr;gap:3vw 4vh;align-items:start}
@@ -396,10 +337,7 @@
     grid-auto-rows:minmax(0,1fr);
     gap:2.4vh 2vw;
   }
-  /* grid-6 已在旧样式里定义为 3x2，这里仅补 align */
 
-  /* ---------- 图片 frame-img（layouts.md 主命名） ---------- */
-  /* 在旧样式里已定义，这里补 img-cap 命名别名与增强 */
   figure.frame-img{margin:0;display:flex;flex-direction:column;min-width:0}
   .img-cap{
     display:block;
@@ -410,7 +348,6 @@
     text-transform:uppercase;
     opacity:.6;
   }
-  /* callout src 命名别名 */
   .callout-src{
     display:block;
     margin-top:1.6vh;
@@ -421,19 +358,6 @@
     opacity:.6;
   }
 
-  /* ---------- chrome & foot 补位（layouts.md 简单写法） ---------- */
-  .chrome{font-family:var(--mono);font-size:max(11px,.78vw);letter-spacing:.2em;text-transform:uppercase;opacity:.62}
-  .foot{font-family:var(--mono);font-size:max(11px,.78vw);letter-spacing:.18em;text-transform:uppercase;opacity:.5}
-
-  /* ============ 动效系统(Motion One 驱动) ============
-     所有 [data-anim] 元素默认隐藏,进入页面时由 JS 逐个揭示。
-     - cascade(默认):按 DOM 顺序 stagger 120ms 淡入 + y:16→0
-     - hero(hero 页自动):慢一点的 stagger 180ms
-     - quote(含 [data-anim="line"]):逐行 600ms 淡入
-     - directional(含 [data-anim="left|right"]):左→分隔线→右
-     - pipeline(data-animate="pipeline"):Space/→ 手动推进
-     Motion One 没加载成功时(CDN 断 + 本地丢),所有 [data-anim] 会兜底显示。
-  */
   [data-anim]{opacity:1}
   body.motion-ready [data-anim]{opacity:0}
   body.motion-ready [data-anim="left"]{transform:translateX(-24px)}
@@ -447,7 +371,6 @@
   body.low-power.motion-ready [data-anim],
   body.low-power [data-anim]{opacity:1!important;transform:none!important}
 
-  /* ---------- 响应式降级 ---------- */
   @media (max-width:900px){
     .display{font-size:16vw}
     .display-zh{font-size:12vw}
@@ -458,37 +381,32 @@
     .grid-2-7-5,.grid-2-6-6,.grid-2-8-4{grid-template-columns:1fr}
   }
 
-  /* ============================
-     Multi-theme palette (6 themes)
-     激活方式：URL ?theme=<id> 或 <html data-theme="<id>">
-     默认仍是 Sika Corporate（不写 data-theme 时），不破坏现有 deck
-     ============================ */
   :root[data-theme="sika-yellow"]{
-    --ink:#3A2E1A;--ink-rgb:58,46,26;--ink-tint:#5C4A2E;
+    --ink:#FCC500;--ink-rgb:252,197,0;--ink-tint:#C9A300;
     --paper:#FFFFFF;--paper-rgb:255,255,255;--paper-tint:#F5F5F5;
-    --brand-secondary:#FCC500;--accent-on:#3A2E0E;
+    --brand-secondary:#FCC500;
     --text-secondary:#2A2A2A;--text-muted:#6B6B6B;
     --border:#E5E5E5;--line-strong:#1A1A1A;
   }
   :root[data-theme="sika-red"]{
-    --ink:#1F0E0E;--ink-rgb:31,14,14;--ink-tint:#3D1A1A;
+    --ink:#D82828;--ink-rgb:216,40,40;--ink-tint:#A81E1E;
     --paper:#FFFFFF;--paper-rgb:255,255,255;--paper-tint:#F5F5F5;
-    --brand-secondary:#FCC500;--accent-on:#2A0A0A;
+    --brand-secondary:#FCC500;
     --text-secondary:#2A2A2A;--text-muted:#6B6B6B;
     --border:#E5E5E5;--line-strong:#1A1A1A;
   }
   :root[data-theme="davco-amber"]{
-    --ink:#3A2810;--ink-rgb:58,40,16;--ink-tint:#5C4220;
+    --ink:#F7B20B;--ink-rgb:247,178,11;--ink-tint:#C48A00;
     --paper:#FAFAFA;--paper-rgb:250,250,250;--paper-tint:#F7F7F7;
-    --brand-secondary:#F7B20B;--accent-on:#3A2806;
+    --brand-secondary:#F7B20B;
     --text-secondary:#222222;--text-muted:#666666;
     --border:#E6E6E6;--line-strong:#1A1A1A;
   }
   :root[data-theme="davco-restrained"]{
     --ink:#E8A40A;--ink-rgb:232,164,10;--ink-tint:#B58208;
     --paper:#FAFAFA;--paper-rgb:250,250,250;--paper-tint:#F0F2F4;
-    --brand-secondary:#E8A40A;--accent-on:#2E2208;
-    --text-secondary:#3E4C59;--text-muted:#5E6A78;
+    --brand-secondary:#E8A40A;
+    --text-secondary:#3E4C59;--text-muted:#6B7785;
     --border:#DCE2E7;--line-strong:#2C3842;
   }
   :root[data-theme="neutral-ink"]{
@@ -502,11 +420,10 @@
     --ink:#2C2C2C;--ink-rgb:44,44,44;--ink-tint:#5A4A3A;
     --paper:#FAF8F3;--paper-rgb:250,248,243;--paper-tint:#F0EBE0;
     --brand-secondary:#B86F4A;
-    --text-secondary:#4A4A4A;--text-muted:#666460;
+    --text-secondary:#4A4A4A;--text-muted:#7A7A7A;
     --border:#E2DCCB;--line-strong:#2C2C2C;
   }
 
-  /* Multi-theme font stacks (per-theme) */
   :root[data-theme="sika-yellow"]{
     --serif-en:"Barlow Condensed","Archivo Narrow","Playfair Display",Georgia,serif;
     --sans-en:"Barlow Condensed","Inter","Helvetica Neue",sans-serif;
@@ -546,7 +463,6 @@
     --mono:"JetBrains Mono",ui-monospace,monospace;
   }
 
-  /* Theme switcher UI (small chip bottom-right) */
   .theme-chip{
     position:fixed;bottom:2.4vh;left:2.4vw;z-index:50;
     display:inline-flex;gap:6px;align-items:center;
@@ -562,13 +478,28 @@
     cursor:pointer;
   }
   .theme-chip select option{background:#1A1A1A;color:#fff}
+
+  /* Chapter index: 6 chips top-right */
+  #chapnav{
+    position:fixed;top:2.4vh;right:2.4vw;z-index:50;
+    display:flex;gap:6px;align-items:center;
+    padding:6px 8px;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);
+  }
+  #chapnav button{
+    background:transparent;color:#fff;border:1px solid rgba(255,255,255,.32);
+    font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+    padding:4px 8px;cursor:pointer;text-transform:uppercase;transition:all .2s;
+  }
+  #chapnav button:hover{background:rgba(255,255,255,.12)}
+  #chapnav button.active{background:var(--brand-secondary);color:var(--ink);border-color:var(--brand-secondary)}
 </style>
-<!-- multi-theme font preset: 6 套主题按需加载 -->
+<!-- multi-theme font preset: 6 themes on demand -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&family=Space+Mono:wght@400;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600&family=Lora:wght@400;500;600;700&family=EB+Garamond:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700;900&family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
+<!-- DATA-2024 — Sika 数据基于 2024 Annual Report (营收 11.2B CHF · 员工 33K · 工程师 8K · 103 国家) -->
 <script>
   (function(){
     const KEY = 'sika-ppt-low-power';
@@ -598,26 +529,516 @@
 <canvas id="bg-dark" class="bg"></canvas>
 <canvas id="bg-light" class="bg"></canvas>
 <div id="hint">← → 翻页 · B 静态 · ESC 索引</div>
+<div id="chapnav" aria-label="Chapter index"></div>
 
 <div id="deck">
 
 <!-- ============================================================
-     SLIDES 插入区 · 在此处填充所有 <section class="slide ..."> 页面
-     每页模板参考 references/page-patterns.md
-     页面组件参考 references/components.md
+     6 GROUPS × 3 PAGES = 18 SLIDES
+     Group 0: Sika Yellow      · slides  1-3   (data-theme="sika-yellow")
+     Group 1: Sika Red         · slides  4-6   (data-theme="sika-red")
+     Group 2: Davco Amber      · slides  7-9   (data-theme="davco-amber")
+     Group 3: Davco Restrained · slides 10-12  (data-theme="davco-restrained")
+     Group 4: Neutral Ink      · slides 13-15  (data-theme="neutral-ink")
+     Group 5: Neutral Paper    · slides 16-18  (data-theme="neutral-paper")
+     Layout: cover=A-MAGAZINE-COVER · divider=A-SECTION-DIVIDER · data-hero=A-DATA-HERO
+     Rhythm: L-D-L / D-D-L / L-D-L / D-L-L / D-L-L / L-L-D  (no 3 consecutive)
      ============================================================ -->
 
-<!-- SLIDES_HERE -->
+
+<!-- ===================== GROUP 0 · SIKA YELLOW ===================== -->
+
+<!-- 1/18 · COVER · Sika Yellow · hero light -->
+<section class="slide hero light" data-theme="sika-yellow" data-layout="A-MAGAZINE-COVER" data-animate="hero">
+  <div class="sika-brand-band"></div>
+  <div class="sika-corner"></div>
+  <div class="chrome">
+    <div class="left">
+      <span class="sika-badge"><span>Sika</span></span>
+      <span>· Sika Yellow · 01 / 06</span>
+    </div>
+    <div class="right"><span>Building Trust</span><span class="sep"></span><span>1910 →</span></div>
+  </div>
+  <div class="frame" style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:2vh">
+    <div class="kicker" data-anim>Sika Corporate · Industrial Trust</div>
+    <h1 class="display" data-anim style="margin-bottom:2.4vh">Sika Yellow</h1>
+    <p class="lead" data-anim style="max-width:38ch;margin-bottom:3vh">Building Trust since 1910 — 1910 起源的工业感暖黄, 印出整个化学建材世界对「耐候 / 黏结 / 密封」的标准答案.</p>
+    <div class="rule" data-anim></div>
+    <div class="foot" data-anim>
+      <div class="title">Pantone 7409 C · Concrete-grade</div>
+      <div>06.10 / Magazine No.001</div>
+    </div>
+  </div>
+</section>
+
+<!-- 2/18 · SECTION DIVIDER · Sika Yellow · hero dark -->
+<section class="slide hero dark" data-theme="sika-yellow" data-layout="A-SECTION-DIVIDER" data-animate="hero">
+  <div class="sika-corner"></div>
+  <div class="chrome">
+    <div class="left"><span>01 — Sika Yellow</span><span class="sep"></span><span>Section Divider</span></div>
+    <div class="right"><span>SIKA.COM</span></div>
+  </div>
+  <div class="frame center" style="flex:1;text-align:left;align-items:flex-start;justify-content:center;padding-bottom:6vh">
+    <div data-anim class="kicker" style="opacity:.55;margin-bottom:3vh">CHAPTER 01 / 06</div>
+    <h1 data-anim class="h-hero" style="font-size:min(13vw,21vh);font-weight:800;letter-spacing:-.03em;line-height:.96">Sika Yellow</h1>
+    <h2 data-anim class="display-zh" style="margin-top:1.2vh;font-size:min(7vw,11vh);font-weight:500;opacity:.85;letter-spacing:.04em">集团全色复刻</h2>
+    <div data-anim class="rule" style="width:32vw;margin-top:4vh;opacity:.5"></div>
+    <p data-anim class="lead" style="max-width:42ch;margin-top:3vh;opacity:.7">从 1910 巴登的化工车间到六大洲 103 个国家, Sika Yellow 始终作为「可靠 / 防水 / 工业」的第一视觉签名出现.</p>
+  </div>
+  <div class="foot">
+    <div class="title">— Sika.com</div>
+    <div>→ 03 / 18 · Data Hero</div>
+  </div>
+</section>
+
+<!-- 3/18 · DATA HERO · Sika Yellow · light -->
+<section class="slide light" data-theme="sika-yellow" data-layout="A-DATA-HERO" data-animate="grid-reveal">
+  <div class="chrome">
+    <div class="left"><span>Sika Yellow · Data</span><span class="sep"></span><span>03 / 18</span></div>
+    <div class="right"><span>1910 → 2025 · 115 YEARS</span></div>
+  </div>
+  <div class="frame" style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4vh">
+    <div data-anim class="kicker">Sika · 三组关键数字</div>
+    <h2 data-anim class="h1-zh" style="font-weight:700">百年耐候 · 一抹暖黄</h2>
+    <div class="grid-3" style="flex:0 0 auto;padding-top:2.6vh;border-top:1px solid currentColor">
+      <div class="stat-card" data-anim>
+        <div class="stat-label">Founded · 创立</div>
+        <div class="stat-nb">1910</div>
+        <div class="stat-note">Kaspar Winkler 在瑞士巴登创立 Lack &amp; Farbenfabrik, 用 Sika-1 防水外加剂解决 Gotthard 隧道渗水难题.</div>
+      </div>
+      <div class="stat-card" data-anim>
+        <div class="stat-label">Countries · 国家</div>
+        <div class="stat-nb">103</div>
+        <div class="stat-note">销售网络覆盖六大洲 103 国, 200+ 全资子公司, 25+ 生产基地 — 真正的全球化本地服务.</div>
+      </div>
+      <div class="stat-card" data-anim>
+        <div class="stat-label">Revenue · 营收</div>
+        <div class="stat-nb">11.2<span class="stat-unit">B CHF</span></div>
+        <div class="stat-note">2024 财年合并营收 11.2B CHF, 4 大业务 (混凝土 / 防水 / 密封 / 屋面) 各占 20-30%.</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="title">Sika · 2024 Annual Report</div>
+    <div>SIKA.COM / INVESTORS</div>
+  </div>
+</section>
+
+
+<!-- ===================== GROUP 1 · SIKA RED ===================== -->
+
+<!-- 4/18 · COVER · Sika Red · hero dark -->
+<section class="slide hero dark" data-theme="sika-red" data-layout="A-MAGAZINE-COVER" data-animate="hero">
+  <div class="sika-brand-band"></div>
+  <div class="sika-corner"></div>
+  <div class="chrome">
+    <div class="left">
+      <span class="sika-badge"><span>Sika</span></span>
+      <span>· Sika Red · 02 / 06</span>
+    </div>
+    <div class="right"><span>Bold Decision</span><span class="sep"></span><span>战略 / 风险</span></div>
+  </div>
+  <div class="frame" style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:2vh">
+    <div class="kicker" data-anim>Sika · A Statement for Risk</div>
+    <h1 class="display" data-anim style="margin-bottom:2.4vh">Sika Red</h1>
+    <p class="lead" data-anim style="max-width:38ch;margin-bottom:3vh">战略 / 风险 / 决策封页 — 当议题从「介绍 Sika」转向「让 Sika 进入下一局」, 黄退场, 红上场.</p>
+    <div class="rule" data-anim></div>
+    <div class="foot" data-anim>
+      <div class="title">Pantone 1795 C · Risk &amp; Capex</div>
+      <div>06.10 / Magazine No.002</div>
+    </div>
+  </div>
+</section>
+
+<!-- 5/18 · SECTION DIVIDER · Sika Red · dark -->
+<section class="slide dark" data-theme="sika-red" data-layout="A-SECTION-DIVIDER" data-animate="hero">
+  <div class="chrome">
+    <div class="left"><span>02 — Sika Red</span><span class="sep"></span><span>Section Divider</span></div>
+    <div class="right"><span>SIKA / STRATEGY</span></div>
+  </div>
+  <div class="frame center" style="flex:1;text-align:left;align-items:flex-start;justify-content:center;padding-bottom:6vh">
+    <div data-anim class="kicker" style="opacity:.55;margin-bottom:3vh">CHAPTER 02 / 06</div>
+    <h1 data-anim class="h-hero" style="font-size:min(13vw,21vh);font-weight:800;letter-spacing:-.03em;line-height:.96">Sika Red</h1>
+    <h2 data-anim class="display-zh" style="margin-top:1.2vh;font-size:min(7vw,11vh);font-weight:500;opacity:.85;letter-spacing:.04em">战略 · 风险 · 决策</h2>
+    <div data-anim class="rule" style="width:32vw;margin-top:4vh;opacity:.5"></div>
+    <p data-anim class="lead" style="max-width:42ch;margin-top:3vh;opacity:.7">红色版的 Sika 适用于并购整合 / 海外扩产 / 战略转向 — 当一句 sentence 需要有「不能撤回」的重量, 用红底白字.</p>
+  </div>
+  <div class="foot">
+    <div class="title">— Sika / Strategy</div>
+    <div>→ 06 / 18 · Data Hero</div>
+  </div>
+</section>
+
+<!-- 6/18 · DATA HERO · Sika Red · light -->
+<section class="slide light" data-theme="sika-red" data-layout="A-DATA-HERO" data-animate="grid-reveal">
+  <div class="chrome">
+    <div class="left"><span>Sika Red · Data</span><span class="sep"></span><span>06 / 18</span></div>
+    <div class="right"><span>RISK · STRATEGY · 2024</span></div>
+  </div>
+  <div class="frame" style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4vh">
+    <div data-anim class="kicker">Sika · 战略面三组数据</div>
+    <h2 data-anim class="h1-zh" style="font-weight:700">下一局 · 投入与版图</h2>
+    <div class="grid-3" style="flex:0 0 auto;padding-top:2.6vh;border-top:1px solid currentColor">
+      <div class="stat-card" data-anim>
+        <div class="stat-label">R&amp;D / Revenue</div>
+        <div class="stat-nb">4.8<span class="stat-unit">%</span></div>
+        <div class="stat-note">研发投入占合并营收 4.8%, 持续 5 年保持 4-5% 区间 — 在 11.2B CHF 体量下意味着约 540M CHF 年度 R&amp;D 预算.</div>
+      </div>
+      <div class="stat-card" data-anim>
+        <div class="stat-label">Employees · 员工</div>
+        <div class="stat-nb">33<span class="stat-unit">K</span></div>
+        <div class="stat-note">全球雇员 33,000+, 其中约 8,000 人在 R&amp;D 部门 — Sika 是「化学品 + 应用工程师」双轮驱动的典型.</div>
+      </div>
+      <div class="stat-card" data-anim>
+        <div class="stat-label">Countries · 国家</div>
+        <div class="stat-nb">103</div>
+        <div class="stat-note">销售网络覆盖六大洲 103 国, 200+ 全资子公司, 25+ 生产基地 — 真正的全球化本地服务.</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="title">Sika · Investor Day 2025</div>
+    <div>SIKA.COM / STRATEGY</div>
+  </div>
+</section>
+
+
+<!-- ===================== GROUP 2 · DAVCO AMBER ===================== -->
+
+<!-- 7/18 · COVER · Davco Amber · hero light -->
+<section class="slide hero light" data-theme="davco-amber" data-layout="A-MAGAZINE-COVER" data-animate="hero">
+  <div class="sika-brand-band"></div>
+  <div class="sika-corner"></div>
+  <div class="chrome">
+    <div class="left">
+      <span class="sika-badge"><span>Davco</span></span>
+      <span>· 德高中国 · 03 / 06</span>
+    </div>
+    <div class="right"><span>28 Years of Tile</span><span class="sep"></span><span>家装建材</span></div>
+  </div>
+  <div class="frame" style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:2vh">
+    <div class="kicker" data-anim>Davco · 28 Years of Tile</div>
+    <h1 class="display" data-anim style="margin-bottom:2.4vh">Davco Amber</h1>
+    <p class="lead" data-anim style="max-width:38ch;margin-bottom:3vh">德高中国 · 家装建材 — 1996 年进入中国, 把「瓷砖胶」从一个工程术语变成家装标配品类.</p>
+    <div class="rule" data-anim></div>
+    <div class="foot" data-anim>
+      <div class="title">德高 (广州) 建材有限公司</div>
+      <div>06.10 / Magazine No.003</div>
+    </div>
+  </div>
+</section>
+
+<!-- 8/18 · SECTION DIVIDER · Davco Amber · hero dark -->
+<section class="slide hero dark" data-theme="davco-amber" data-layout="A-SECTION-DIVIDER" data-animate="hero">
+  <div class="sika-corner"></div>
+  <div class="chrome">
+    <div class="left"><span>03 — Davco Amber</span><span class="sep"></span><span>Section Divider</span></div>
+    <div class="right"><span>DAVCO / CHANNEL</span></div>
+  </div>
+  <div class="frame center" style="flex:1;text-align:left;align-items:flex-start;justify-content:center;padding-bottom:6vh">
+    <div data-anim class="kicker" style="opacity:.55;margin-bottom:3vh">CHAPTER 03 / 06</div>
+    <h1 data-anim class="h-hero" style="font-size:min(13vw,21vh);font-weight:800;letter-spacing:-.03em;line-height:.96">Davco Amber</h1>
+    <h2 data-anim class="display-zh" style="margin-top:1.2vh;font-size:min(7vw,11vh);font-weight:500;opacity:.85;letter-spacing:.04em">德高中国 · 家装建材</h2>
+    <div data-anim class="rule" style="width:32vw;margin-top:4vh;opacity:.5"></div>
+    <p data-anim class="lead" style="max-width:42ch;margin-top:3vh;opacity:.7">从「卖一桶防水」到「卖一整套瓷砖系统」, 德高用 28 年把一个法国母品牌的中国分公司, 经营成家装辅料的渠道之王.</p>
+  </div>
+  <div class="foot">
+    <div class="title">— Davco.com.cn</div>
+    <div>→ 09 / 18 · Data Hero</div>
+  </div>
+</section>
+
+<!-- 9/18 · DATA HERO · Davco Amber · light -->
+<section class="slide light" data-theme="davco-amber" data-layout="A-DATA-HERO" data-animate="grid-reveal">
+  <div class="chrome">
+    <div class="left"><span>Davco Amber · 数据</span><span class="sep"></span><span>09 / 18</span></div>
+    <div class="right"><span>1996 — 2024 · 28 年</span></div>
+  </div>
+  <div class="frame" style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4vh">
+    <div data-anim class="kicker">Davco · 渠道三组数据</div>
+    <h2 data-anim class="h1-zh" style="font-weight:700">二十八年 · 卖进中国</h2>
+    <div class="grid-3" style="flex:0 0 auto;padding-top:2.6vh;border-top:1px solid currentColor">
+      <div class="stat-card" data-anim>
+        <div class="stat-label">成立年份</div>
+        <div class="stat-nb">1996</div>
+        <div class="stat-note">1996 年德高 (广州) 建材有限公司成立, 引入法国母品牌 Davco 瓷砖胶技术, 选址广州番禺.</div>
+      </div>
+      <div class="stat-card" data-anim>
+        <div class="stat-label">门店数量</div>
+        <div class="stat-nb">1600<span class="stat-unit">+</span></div>
+        <div class="stat-note">全国 1,600+ 家专卖店, 覆盖 300+ 地级市, 形成「县城看得到, 镇上买得到」的渠道密度.</div>
+      </div>
+      <div class="stat-card" data-anim>
+        <div class="stat-label">县区覆盖</div>
+        <div class="stat-nb">3000<span class="stat-unit">+</span></div>
+        <div class="stat-note">经销商体系下沉到 3,000+ 县区, 配套「好师傅」认证施工服务 — 把「卖材料」升级为「卖系统」.</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="title">Davco · 2024 渠道年报</div>
+    <div>DAVCO.COM.CN</div>
+  </div>
+</section>
+
+
+<!-- ===================== GROUP 3 · DAVCO RESTRAINED ===================== -->
+
+<!-- 10/18 · COVER · Davco Restrained · hero dark -->
+<section class="slide hero dark" data-theme="davco-restrained" data-layout="A-MAGAZINE-COVER" data-animate="hero">
+  <div class="sika-brand-band"></div>
+  <div class="sika-corner"></div>
+  <div class="chrome">
+    <div class="left">
+      <span class="sika-badge"><span>Davco</span></span>
+      <span>· 工程部内训 · 04 / 06</span>
+    </div>
+    <div class="right"><span>Engineering Calm</span><span class="sep"></span><span>施工规范</span></div>
+  </div>
+  <div class="frame" style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:2vh">
+    <div class="kicker" data-anim>Davco · Engineering Calm</div>
+    <h1 class="display" data-anim style="margin-bottom:2.4vh">Davco Restrained</h1>
+    <p class="lead" data-anim style="max-width:38ch;margin-bottom:3vh">工程部内训 / 施工规范 / 技术手册 — 把品牌色压到 8% 饱和, 让数字、规范号、流程图成为页面的主角.</p>
+    <div class="rule" data-anim></div>
+    <div class="foot" data-anim>
+      <div class="title">技术部 · 内部资料 · 不可外发</div>
+      <div>06.10 / Magazine No.004</div>
+    </div>
+  </div>
+</section>
+
+<!-- 11/18 · SECTION DIVIDER · Davco Restrained · hero light -->
+<section class="slide hero light" data-theme="davco-restrained" data-layout="A-SECTION-DIVIDER" data-animate="hero">
+  <div class="sika-corner"></div>
+  <div class="chrome">
+    <div class="left"><span>04 — Davco Restrained</span><span class="sep"></span><span>Section Divider</span></div>
+    <div class="right"><span>DAVCO / SPEC</span></div>
+  </div>
+  <div class="frame center" style="flex:1;text-align:left;align-items:flex-start;justify-content:center;padding-bottom:6vh">
+    <div data-anim class="kicker" style="opacity:.55;margin-bottom:3vh">CHAPTER 04 / 06</div>
+    <h1 data-anim class="h-hero" style="font-size:min(13vw,21vh);font-weight:800;letter-spacing:-.03em;line-height:.96">Davco Restrained</h1>
+    <h2 data-anim class="display-zh" style="margin-top:1.2vh;font-size:min(7vw,11vh);font-weight:500;opacity:.85;letter-spacing:.04em">工程部内训 · 施工规范</h2>
+    <div data-anim class="rule" style="width:32vw;margin-top:4vh;opacity:.5"></div>
+    <p data-anim class="lead" style="max-width:42ch;margin-top:3vh;opacity:.7">从家装海报色, 退回到灰底工程色. 这一组页面的读者是工地经理 / 项目监理 / 投标技术员, 不是终端消费者.</p>
+  </div>
+  <div class="foot">
+    <div class="title">— Davco / Spec</div>
+    <div>→ 12 / 18 · Data Hero</div>
+  </div>
+</section>
+
+<!-- 12/18 · DATA HERO · Davco Restrained · light -->
+<section class="slide light" data-theme="davco-restrained" data-layout="A-DATA-HERO" data-animate="grid-reveal">
+  <div class="chrome">
+    <div class="left"><span>Davco Restrained · 规范</span><span class="sep"></span><span>12 / 18</span></div>
+    <div class="right"><span>GB-T 23440 · C2 · 25 YRS</span></div>
+  </div>
+  <div class="frame" style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4vh">
+    <div data-anim class="kicker">Davco · 规范三组数据</div>
+    <h2 data-anim class="h1-zh" style="font-weight:700">工地语言 · 三件硬指标</h2>
+    <div class="grid-3" style="flex:0 0 auto;padding-top:2.6vh;border-top:1px solid currentColor">
+      <div class="stat-card" data-anim>
+        <div class="stat-label">粘结等级</div>
+        <div class="stat-nb">C2</div>
+        <div class="stat-note">C2 增强型 — 适用于大尺寸瓷砖 / 低吸水率玻化砖 / 外墙外保温粘贴. 拉伸粘结强度 ≥ 1.0 MPa.</div>
+      </div>
+      <div class="stat-card" data-anim>
+        <div class="stat-label">国标号</div>
+        <div class="stat-nb">GB-T 23440</div>
+        <div class="stat-note">《无机防水堵漏材料》国标号 GB/T 23440-2009, 德高 K11 防水浆料严格按此生产, 出厂附 CNAS 检测报告.</div>
+      </div>
+      <div class="stat-card" data-anim>
+        <div class="stat-label">设计寿命</div>
+        <div class="stat-nb">25<span class="stat-unit">yrs</span></div>
+        <div class="stat-note">正常施工条件下, 德高瓷砖胶 / 防水浆料系统设计使用寿命 ≥ 25 年, 远超国标 15 年基线.</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="title">Davco · 技术规范 · 内部</div>
+    <div>GB-T 23440 / JC/T 547</div>
+  </div>
+</section>
+
+
+<!-- ===================== GROUP 4 · NEUTRAL INK ===================== -->
+
+<!-- 13/18 · COVER · Neutral Ink · hero dark -->
+<section class="slide hero dark" data-theme="neutral-ink" data-layout="A-MAGAZINE-COVER" data-animate="hero">
+  <div class="sika-brand-band"></div>
+  <div class="sika-corner"></div>
+  <div class="chrome">
+    <div class="left">
+      <span class="sika-badge"><span>Neutral</span></span>
+      <span>· 年报通用 · 05 / 06</span>
+    </div>
+    <div class="right"><span>A Year of Trust</span><span class="sep"></span><span>Annual Report</span></div>
+  </div>
+  <div class="frame" style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:2vh">
+    <div class="kicker" data-anim>Neutral · A Year of Trust</div>
+    <h1 class="display" data-anim style="margin-bottom:2.4vh">Neutral Ink</h1>
+    <p class="lead" data-anim style="max-width:38ch;margin-bottom:3vh">年报 / 公司战略 / 跨品牌通用 — 一套「不会出错」的年报配色, 把品牌识别让位给数据本身.</p>
+    <div class="rule" data-anim></div>
+    <div class="foot" data-anim>
+      <div class="title">Playfair Display + Noto Serif SC</div>
+      <div>06.10 / Magazine No.005</div>
+    </div>
+  </div>
+</section>
+
+<!-- 14/18 · SECTION DIVIDER · Neutral Ink · hero light -->
+<section class="slide hero light" data-theme="neutral-ink" data-layout="A-SECTION-DIVIDER" data-animate="hero">
+  <div class="sika-corner"></div>
+  <div class="chrome">
+    <div class="left"><span>05 — Neutral Ink</span><span class="sep"></span><span>Section Divider</span></div>
+    <div class="right"><span>NEUTRAL / INK</span></div>
+  </div>
+  <div class="frame center" style="flex:1;text-align:left;align-items:flex-start;justify-content:center;padding-bottom:6vh">
+    <div data-anim class="kicker" style="opacity:.55;margin-bottom:3vh">CHAPTER 05 / 06</div>
+    <h1 data-anim class="h-hero" style="font-size:min(13vw,21vh);font-weight:800;letter-spacing:-.03em;line-height:.96">Neutral Ink</h1>
+    <h2 data-anim class="display-zh" style="margin-top:1.2vh;font-size:min(7vw,11vh);font-weight:500;opacity:.85;letter-spacing:.04em">A Year of Trust</h2>
+    <div data-anim class="rule" style="width:32vw;margin-top:4vh;opacity:.5"></div>
+    <p data-anim class="lead" style="max-width:42ch;margin-top:3vh;opacity:.7">当演讲对象是股东 / 监管 / 跨品牌事业部, 衬线 + 哑金比无衬线 + 高饱和更稳重. 适用: 财报、ESG、董事会.</p>
+  </div>
+  <div class="foot">
+    <div class="title">— Neutral / Ink</div>
+    <div>→ 15 / 18 · Data Hero</div>
+  </div>
+</section>
+
+<!-- 15/18 · DATA HERO · Neutral Ink · light -->
+<section class="slide light" data-theme="neutral-ink" data-layout="A-DATA-HERO" data-animate="grid-reveal">
+  <div class="chrome">
+    <div class="left"><span>Neutral Ink · 季度增长</span><span class="sep"></span><span>15 / 18</span></div>
+    <div class="right"><span>FY2025 · Q1-Q3 GROWTH</span></div>
+  </div>
+  <div class="frame" style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4vh">
+    <div data-anim class="kicker">Neutral · 季度三组数据</div>
+    <h2 data-anim class="h1-zh" style="font-weight:700">一岁三季 · 三次加速</h2>
+    <div class="grid-3" style="flex:0 0 auto;padding-top:2.6vh;border-top:1px solid currentColor">
+      <div class="stat-card" data-anim>
+        <div class="stat-label">Q1 营收增长</div>
+        <div class="stat-nb">+18<span class="stat-unit">%</span></div>
+        <div class="stat-note">一季度合并营收同比增长 18%, 主要驱动: 欧洲春季维修季节性需求恢复, 化工原料价格回落.</div>
+      </div>
+      <div class="stat-card" data-anim>
+        <div class="stat-label">Q2 营收增长</div>
+        <div class="stat-nb">+24<span class="stat-unit">%</span></div>
+        <div class="stat-note">二季度同比增长加速到 24%, 北美屋顶翻新周期叠加亚太工厂产能爬坡, 订单积压释放.</div>
+      </div>
+      <div class="stat-card" data-anim>
+        <div class="stat-label">Q3 营收增长</div>
+        <div class="stat-nb">+31<span class="stat-unit">%</span></div>
+        <div class="stat-note">三季度再加速到 +31%, 全年指引上调. 管理层口径: 「增长由量驱动, 不是价格驱动」.</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="title">Neutral · Annual Report 2025</div>
+    <div>Q1 + Q2 + Q3 / UNAUDITED</div>
+  </div>
+</section>
+
+
+<!-- ===================== GROUP 5 · NEUTRAL PAPER ===================== -->
+
+<!-- 16/18 · COVER · Neutral Paper · hero light -->
+<section class="slide hero light" data-theme="neutral-paper" data-layout="A-MAGAZINE-COVER" data-animate="hero">
+  <div class="sika-brand-band"></div>
+  <div class="sika-corner"></div>
+  <div class="chrome">
+    <div class="left">
+      <span class="sika-badge"><span>Neutral</span></span>
+      <span>· 慢工出活 · 06 / 06</span>
+    </div>
+    <div class="right"><span>Slow Craft</span><span class="sep"></span><span>出版物</span></div>
+  </div>
+  <div class="frame" style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:2vh">
+    <div class="kicker" data-anim>Neutral · Slow Craft</div>
+    <h1 class="display" data-anim style="margin-bottom:2.4vh">Neutral Paper</h1>
+    <p class="lead" data-anim style="max-width:38ch;margin-bottom:3vh">设计 / 文化 / 人文 / 出版物 — 暖纸底 + 赭石棕 + 衬线字, 把演讲节奏从「季度增长」拉回到「一年只做一件事」.</p>
+    <div class="rule" data-anim></div>
+    <div class="foot" data-anim>
+      <div class="title">Fraunces + Noto Serif SC</div>
+      <div>06.10 / Magazine No.006</div>
+    </div>
+  </div>
+</section>
+
+<!-- 17/18 · SECTION DIVIDER · Neutral Paper · hero light -->
+<section class="slide hero light" data-theme="neutral-paper" data-layout="A-SECTION-DIVIDER" data-animate="hero">
+  <div class="sika-corner"></div>
+  <div class="chrome">
+    <div class="left"><span>06 — Neutral Paper</span><span class="sep"></span><span>Section Divider</span></div>
+    <div class="right"><span>NEUTRAL / PAPER</span></div>
+  </div>
+  <div class="frame center" style="flex:1;text-align:left;align-items:flex-start;justify-content:center;padding-bottom:6vh">
+    <div data-anim class="kicker" style="opacity:.55;margin-bottom:3vh">CHAPTER 06 / 06</div>
+    <h1 data-anim class="h-hero" style="font-size:min(13vw,21vh);font-weight:800;letter-spacing:-.03em;line-height:.96">Neutral Paper</h1>
+    <h2 data-anim class="display-zh" style="margin-top:1.2vh;font-size:min(7vw,11vh);font-weight:500;opacity:.85;letter-spacing:.04em">Slow Craft · 慢工出活</h2>
+    <div data-anim class="rule" style="width:32vw;margin-top:4vh;opacity:.5"></div>
+    <p data-anim class="lead" style="max-width:42ch;margin-top:3vh;opacity:.7">一年 12 篇长文 + 3 本独立 zine — 不追热点, 不追算法, 用衬线 + 暖纸底, 给「想慢下来读一读」的读者留一个角落.</p>
+  </div>
+  <div class="foot">
+    <div class="title">— Neutral / Paper</div>
+    <div>→ 18 / 18 · Data Hero</div>
+  </div>
+</section>
+
+<!-- 18/18 · DATA HERO · Neutral Paper · dark -->
+<section class="slide dark" data-theme="neutral-paper" data-layout="A-DATA-HERO" data-animate="grid-reveal">
+  <div class="chrome">
+    <div class="left"><span>Neutral Paper · 年度产出</span><span class="sep"></span><span>18 / 18</span></div>
+    <div class="right"><span>YEAR 01 · 12 + 3 + 1</span></div>
+  </div>
+  <div class="frame" style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4vh">
+    <div data-anim class="kicker">Neutral · 年度三组产出</div>
+    <h2 data-anim class="h1-zh" style="font-weight:700">一年 · 三件慢东西</h2>
+    <div class="grid-3" style="flex:0 0 auto;padding-top:2.6vh;border-top:1px solid currentColor">
+      <div class="stat-card" data-anim>
+        <div class="stat-label">长文</div>
+        <div class="stat-nb">12<span class="stat-unit">essays</span></div>
+        <div class="stat-note">每月一篇深度长文, 平均 8,000 字, 主题覆盖建筑 / 工艺 / 城市观察 / 设计史, 全年 12 篇不脱更.</div>
+      </div>
+      <div class="stat-card" data-anim>
+        <div class="stat-label">独立 zine</div>
+        <div class="stat-nb">3<span class="stat-unit">zines</span></div>
+        <div class="stat-note">3 本独立出版物: 春 / 夏 / 秋各一本, 限量印刷 500 份, 售完即止, 不加印, 留出「错过感」.</div>
+      </div>
+      <div class="stat-card" data-anim>
+        <div class="stat-label">首年周期</div>
+        <div class="stat-nb">1<span class="stat-unit">year</span></div>
+        <div class="stat-note">完整运营 1 年, 订阅读者 4,200+, 自然增长, 零投放. 明年计划保持节奏, 不扩张.</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="title">Neutral Paper · 2024 收官</div>
+    <div>SUB · READ · KEEP</div>
+  </div>
+</section>
+
 
 </div>
 
 <div id="nav"></div>
 
+<div class="theme-chip" aria-label="Theme switcher">
+  <span>Theme</span>
+  <select id="theme-select" aria-label="Theme">
+    <option value="">Sika (default)</option>
+    <option value="sika-yellow">Sika Yellow</option>
+    <option value="sika-red">Sika Red</option>
+    <option value="davco-amber">Davco Amber</option>
+    <option value="davco-restrained">Davco Restrained</option>
+    <option value="neutral-ink">Neutral Ink</option>
+    <option value="neutral-paper">Neutral Paper</option>
+  </select>
+</div>
+
 <script>
 /* =============== WebGL 双背景 ===============
-   深色页：Holographic Dispersion（全息色散 · 钛金暗流）—— 彩虹微扰、鼠标径向涟漪
-   浅色页：Spiral Vortex（旋转涡流 · 银色珍珠）—— domain-warp 流动、无中心
-   修改风格请参考 references/webgl-backgrounds.md
+   深色页: Holographic Dispersion · 浅色页: Spiral Vortex
 */
 const VS = `attribute vec2 position;void main(){gl_Position=vec4(position,0.0,1.0);}`;
 
@@ -742,13 +1163,28 @@ function stopGL(){
 startGL();
 addEventListener('ppt-low-power-change', e=>{e.detail.on ? stopGL() : startGL();});
 
-// =============== 导航（翻页 / 圆点 / 键盘 / 滚轮 / 触屏） ===============
+// =============== 主题 (chapter 自动切) ===============
+const THEMES = ['sika-yellow','sika-red','davco-amber','davco-restrained','neutral-ink','neutral-paper'];
+const CHAP_LABELS = ['Sika Yellow','Sika Red','Davco Amber','Davco Restrained','Neutral Ink','Neutral Paper'];
+function chapterOf(n){ return Math.floor(n/3); }
+function startOfChapter(c){ return c*3; }
+
+function applyTheme(id){
+  if(id){document.documentElement.setAttribute('data-theme',id);}
+  else{document.documentElement.removeAttribute('data-theme');}
+  try{localStorage.setItem('sika-ppt-theme',id||'');}catch(e){}
+  const sel=document.getElementById('theme-select');
+  if(sel){sel.value=id||'';}
+  const btns=document.querySelectorAll('#chapnav button');
+  btns.forEach((b,i)=>b.classList.toggle('active',THEMES[i]===id));
+}
+
+// =============== 导航 ===============
 const deck=document.getElementById('deck');
 const slides=deck.querySelectorAll('.slide');
 const nav=document.getElementById('nav');
 let idx=0,total=slides.length,lock=false;
 
-// 关键：矫正 deck 宽度为 total * 100vw，否则翻页会错位
 deck.style.width=(total*100)+'vw';
 
 slides.forEach((s,i)=>{
@@ -758,18 +1194,63 @@ slides.forEach((s,i)=>{
   nav.appendChild(b);
 });
 
+let USER_EXPLICIT_THEME = false;
+
+function goTheme(id, slideStart){
+  USER_EXPLICIT_THEME = true;
+  applyTheme(id);
+  if(typeof slideStart==='number') go(slideStart);
+  const qs=new URLSearchParams(location.search);
+  qs.set('theme',id);
+  if(typeof slideStart==='number') qs.set('slide',String(slideStart+1));
+  history.replaceState({},'',location.pathname+'?'+qs.toString()+location.hash);
+}
+
+// build chapter nav (6 chips top-right)
+(function buildChapnav(){
+  const c=document.getElementById('chapnav');
+  THEMES.forEach((t,i)=>{
+    const b=document.createElement('button');
+    b.type='button';b.dataset.theme=t;
+    b.textContent=String(i+1).padStart(2,'0')+' · '+CHAP_LABELS[i];
+    b.onclick=()=>{goTheme(t, startOfChapter(i));};
+    c.appendChild(b);
+  });
+  // theme select
+  const sel=document.getElementById('theme-select');
+  if(sel){
+    sel.addEventListener('change', e=> goTheme(e.target.value, idx));
+  }
+})();
+
 function go(n){
   if(lock)return;
   idx=Math.max(0,Math.min(total-1,n));
   window.__currentSlideIndex = idx;
   deck.style.transform=`translateX(${-idx*100}vw)`;
   nav.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
-  /* 主题切换：优先读 data-theme，其次从 class（light/dark）推断 */
   const el=slides[idx];
-  const th=el.dataset.theme || (el.classList.contains('light')?'light':(el.classList.contains('dark')?'dark':'dark'));
+  const th=el.classList.contains('light')?'light':'dark';
   document.body.classList.toggle('light-bg',th==='light');
-  /* 动效：翻页过渡中段触发当前页的入场动画（由 motion-boot 注册） */
-  if(window.__playSlide) setTimeout(()=>window.__playSlide(idx), 450);
+
+  if(USER_EXPLICIT_THEME){
+    const qs=new URLSearchParams(location.search);
+    if(qs.get('slide')!==String(idx+1)){
+      qs.set('slide',String(idx+1));
+      history.replaceState({},'',location.pathname+'?'+qs.toString()+location.hash);
+    }
+  }else{
+    const wantTheme=el.dataset.theme || THEMES[chapterOf(idx)];
+    if(document.documentElement.getAttribute('data-theme')!==wantTheme){
+      applyTheme(wantTheme);
+      const qs=new URLSearchParams(location.search);
+      qs.set('theme',wantTheme);
+      qs.set('slide',String(idx+1));
+      history.replaceState({},'',location.pathname+'?'+qs.toString()+location.hash);
+    }
+  }
+
+  if(window.__playSlide) setTimeout(()=>window.__playSlide(idx),450);
   lock=true;setTimeout(()=>lock=false,700);
 }
 
@@ -777,7 +1258,7 @@ function go(n){
 let overviewOn=false;
 const ov=document.createElement('div');
 ov.id='overview';
-ov.style.cssText='position:fixed;inset:0;z-index:100;background:rgba(var(--ink-rgb),.92);backdrop-filter:blur(12px);display:none;overflow-y:auto;padding:4vh 4vw';
+ov.style.cssText='position:fixed;inset:0;z-index:100;background:rgba(var(--paper-rgb),.92);backdrop-filter:blur(12px);display:none;overflow-y:auto;padding:4vh 4vw';
 document.body.appendChild(ov);
 
 function buildOverview(){
@@ -786,16 +1267,17 @@ function buildOverview(){
   grid.style.cssText='display:grid;grid-template-columns:repeat(4,1fr);gap:2vh 1.6vw;max-width:90vw;margin:0 auto';
   slides.forEach((s,i)=>{
     const card=document.createElement('div');
-    card.style.cssText='cursor:pointer;border-radius:6px;overflow:hidden;border:2px solid '+(i===idx?'rgba(var(--paper-rgb),.8)':'rgba(var(--paper-rgb),.15)')+';transition:border-color .2s';
-    card.onmouseenter=()=>card.style.borderColor='rgba(var(--paper-rgb),.6)';
-    card.onmouseleave=()=>card.style.borderColor=i===idx?'rgba(var(--paper-rgb),.8)':'rgba(var(--paper-rgb),.15)';
+    const isDark=s.classList.contains('dark')||s.classList.contains('hero')&&s.classList.contains('dark');
+    card.style.cssText='cursor:pointer;border-radius:6px;overflow:hidden;border:2px solid '+(i===idx?'var(--ink)':'rgba(127,127,127,.2)')+';transition:border-color .2s';
+    card.onmouseenter=()=>card.style.borderColor='rgba(127,127,127,.6)';
+    card.onmouseleave=()=>card.style.borderColor=i===idx?'var(--ink)':'rgba(127,127,127,.2)';
     const wrap=document.createElement('div');
     wrap.style.cssText='width:100%;aspect-ratio:16/9;overflow:hidden;position:relative;pointer-events:none;background:'+(s.classList.contains('light')?'var(--paper)':'var(--ink)');
     const clone=s.cloneNode(true);
     clone.style.cssText='width:100vw;height:100vh;transform:scale('+(1/4.5)+');transform-origin:top left;position:absolute;top:0;left:0;pointer-events:none';
     wrap.appendChild(clone);
     const label=document.createElement('div');
-    label.style.cssText='padding:6px 10px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--paper);opacity:.7';
+    label.style.cssText='padding:6px 10px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.7';
     label.textContent=(i+1)+' / '+total;
     card.appendChild(wrap);
     card.appendChild(label);
@@ -827,6 +1309,12 @@ addEventListener('keydown',e=>{
   if(e.key==='ArrowLeft'||e.key==='PageUp'||e.key==='ArrowUp')go(idx-1);
   if(e.key==='Home')go(0);
   if(e.key==='End')go(total-1);
+  // 1-6 jumps to chapter
+  if(/^[1-6]$/.test(e.key)){
+    const c=Number(e.key)-1;
+    goTheme(THEMES[c], startOfChapter(c));
+    return;
+  }
 });
 
 let wheelTO=null,wheelAcc=0;
@@ -853,17 +1341,30 @@ addEventListener('touchend',e=>{
   }
 },{passive:true});
 
-go(0);
+// initial theme from URL/localStorage
+(function initTheme(){
+  const q=new URLSearchParams(location.search).get('theme');
+  if(q){
+    if(THEMES.includes(q)){USER_EXPLICIT_THEME=true;applyTheme(q);return;}
+    console.warn(`[brand-themes] Unknown theme id "${q}". Falling back to no data-theme. Valid ids: ${THEMES.join(', ')}`);
+  }
+  try{
+    const stored=localStorage.getItem('sika-ppt-theme');
+    if(stored && THEMES.includes(stored)){USER_EXPLICIT_THEME=true;applyTheme(stored);return;}
+  }catch(e){}
+  // fallback: first slide's data-theme
+  const first=slides[0] && slides[0].dataset.theme;
+  if(first) applyTheme(first);
+})();
+
+const initialQs=new URLSearchParams(location.search);
+const initialSlideParam=initialQs.get('slide');
+const initialSlide=initialSlideParam?Number(initialSlideParam)-1:0;
+go(Number.isFinite(initialSlide)?initialSlide:0);
 </script>
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <script>lucide.createIcons();</script>
 
-<!-- ============ Motion One 动效引擎（本地优先,CDN 兜底） ============
-     加载策略:先 ./assets/motion.min.js(本地,离线可用),失败 fallback 到 jsDelivr CDN
-     加载完成后挂 window.__playSlide / window.__pipeAdvance,
-     导航脚本会在翻页中段调用 __playSlide(idx),键盘/滚轮/触屏会在翻页前调用 __pipeAdvance()
-     双双失败时会兜底把所有 [data-anim] 设为可见,不让动效破坏阅读
--->
 <script type="module">
 let motion;
 try {
@@ -951,6 +1452,11 @@ if(motion){
       return;
     }
 
+    if(recipe === 'grid-reveal'){
+      animate(all, {opacity:[0,1], y:[10,0]}, {duration:.7, delay:stagger(.12, {start:.15}), easing:EASE});
+      return;
+    }
+
     // default: cascade
     animate(all, {opacity:[0,1], y:[16,0]}, {duration:.75, delay:stagger(.1, {start:.15}), easing:EASE});
   }
@@ -973,45 +1479,10 @@ if(motion){
   window.__playSlide = playSlide;
   window.__pipeAdvance = pipeAdvance;
 
-  // 首屏:go(0) 已跑过(同步),没来得及触发动效 → 这里补一下
+  // first slide: go(0) already ran synchronously, so trigger here
   playSlide(0);
 }
 </script>
-<div class="theme-chip">
-  <span>Theme</span>
-  <select id="themeSelect" aria-label="Theme">
-    <option value="">Sika (default)</option>
-    <option value="sika-yellow">Sika Yellow</option>
-    <option value="sika-red">Sika Red</option>
-    <option value="davco-amber">Davco Amber</option>
-    <option value="davco-restrained">Davco Restrained</option>
-    <option value="neutral-ink">Neutral Ink</option>
-    <option value="neutral-paper">Neutral Paper</option>
-  </select>
-</div>
-<script>
-(function(){
-  function applyTheme(id){
-    var html=document.documentElement;
-    if(id){html.setAttribute('data-theme',id);}else{html.removeAttribute('data-theme');}
-    try{localStorage.setItem('sika-ppt-theme',id||'');}catch(e){}
-    var sel=document.getElementById('themeSelect');if(sel){sel.value=id||'';}
-  }
-  function readTheme(){
-    var q=new URLSearchParams(location.search).get('theme');
-    if(q) return q;
-    try{return localStorage.getItem('sika-ppt-theme')||'';}catch(e){return '';}
-  }
-  var initial=readTheme();
-  if(initial){document.documentElement.setAttribute('data-theme',initial);}
-  document.addEventListener('DOMContentLoaded',function(){
-    var sel=document.getElementById('themeSelect');
-    if(sel){
-      sel.value=initial||'';
-      sel.addEventListener('change',function(e){applyTheme(e.target.value);});
-    }
-  });
-})();
-</script>
+
 </body>
 </html>

@@ -19,14 +19,6 @@
 
 > 仓库由 Leev1s 维护并发布到 [Leev1s/html-ppt](https://github.com/Leev1s/html-ppt)，当前版本支持 Sika / Davco / Neutral 三族多主题切换。
 
-**Sika 主题 · Style A 电子杂志风**
-
-![Style A 电子杂志风效果展示](https://github.com/user-attachments/assets/5dc316a2-401c-4e37-9123-ea081b6ae470)
-
-**Sika 主题 · Style B 瑞士国际主义**
-
-![Style B 瑞士国际主义效果展示](https://github.com/user-attachments/assets/8960e78c-69bb-4b7e-aa95-6fad64b70314)
-
 ## 30 秒开始
 
 ```bash

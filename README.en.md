@@ -17,14 +17,6 @@ It ships with two Sika-adapted visual systems:
 
 > Maintained by Leev1s and published at [Leev1s/html-ppt](https://github.com/Leev1s/html-ppt). This version supports multi-theme switching for Sika / Davco / Neutral brand families.
 
-**Sika Theme · Style A Editorial Magazine**
-
-![Style A Editorial Magazine preview](https://github.com/user-attachments/assets/5dc316a2-401c-4e37-9123-ea081b6ae470)
-
-**Sika Theme · Style B Swiss International**
-
-![Style B Swiss International preview](https://github.com/user-attachments/assets/8960e78c-69bb-4b7e-aa95-6fad64b70314)
-
 ## 30-second start
 
 ```bash
